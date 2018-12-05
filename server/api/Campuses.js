@@ -13,7 +13,20 @@ router.get('/', async (req, res, next) => {
     })
     res.json(campuses)
   } catch (err) {
-    next(err);
+    next(err)
+  }
+})
+
+router.get('/:campusId', async (req, res, next) => {
+  try {
+    const campus = await Campus.findOne({
+      include: [{
+        model: Student
+      }]
+    })
+    res.json(campus)
+  } catch (err) {
+    next(err)
   }
 })
 

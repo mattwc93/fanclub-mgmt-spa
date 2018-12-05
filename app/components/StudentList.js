@@ -1,32 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { fetchStudents } from '../reducers/studentReducer'
+import Student from './Student'
 
 class StudentList extends Component {
-
-  componentDidMount() {
-    this.props.fetchStudents();
-  }
-
   render() {
     const students = this.props.students;
     return (
-      <ul>
-        {students.map(student => {
-          return (
-            <div key={student.id} className='listContainer'>
-              <img src={student.imageUrl} className="smallImg" />
-              <div>
-                <h4>Name: {student.firstName} {student.lastName}</h4>
-                <p>Email: {student.email}</p>
-                <p>GPA: {student.gpa}</p>
-                <p>School: {student.campus.name}</p>
-              </div>
-              <hr />
-            </div>
-          )
-        })}
-      </ul>
+      <div className='container' >
+        <h1>LIST OF STUDENTS:</h1>
+        <div className='studentList'>
+          {students.map(student => {
+            return (
+              <Student key={student.id} student={student} />
+            )
+          })}
+        </div>
+      </div>
     )
   }
 }
@@ -35,8 +24,4 @@ const mapState = state => ({
   students: state.students
 })
 
-const mapDispatch = dispatch => ({
-  fetchStudents: () => dispatch(fetchStudents())
-})
-
-export default connect(mapState, mapDispatch)(StudentList)
+export default connect(mapState)(StudentList)

@@ -15,6 +15,14 @@ export const fetchCampuses = () => {
   }
 }
 
+// TODO: do i even need these?
+// const GET_CAMPUS = 'GET_CAMPUS'
+// export const getCampus = campus => ({type: GET_CAMPUS, campus})
+// export const fetchCampus = (id) => async (dispatch) => {
+//   const { data: campus} = await axios.get(`/api/campus/${id}`)
+//   dispatch(getCampus(campus))
+// }
+
 const campusReducer = (state = [], action) => {
   switch (action.type) {
     case GET_ALL_CAMPUSES:
