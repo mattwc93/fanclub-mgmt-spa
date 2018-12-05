@@ -1,14 +1,21 @@
 import React from 'react'
+import { Route, Switch, Redirect, NavLink } from 'react-router-dom';
+import CampusList from './CampusList'
+import StudentList from './StudentList'
 
 const Root = () => {
   return (
     <div>
       <nav>
-        Welcome!
+        <NavLink to='/campuses'>SEE ALL CAMPUSES</NavLink>
+        <NavLink to='/students'>SEE ALL STUDENTS</NavLink>
       </nav>
       <main>
         <h1>Welcome to the Margaret Hamilton Academy of JavaScript!</h1>
-        <p>This seems like a nice place to get started with some Routes!</p>
+        <Switch>
+          <Route path="/campuses" component={CampusList} />
+          <Route path="/students" component={StudentList} />
+        </Switch>
       </main>
     </div>
   )
