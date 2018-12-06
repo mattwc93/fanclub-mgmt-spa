@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import Student from './Student'
+import NewStudentForm from './NewStudentForm';
+import { fetchStudents } from '../reducers/studentReducer'
+
 
 class StudentList extends Component {
+  componentDidMount() {
+    this.props.fetchStudents()
+  }
+  
   render() {
     const students = this.props.students;
     return (
@@ -15,13 +23,19 @@ class StudentList extends Component {
             )
           })}
         </div>
+        <NewStudentForm />
       </div>
     )
   }
 }
 
 const mapState = state => ({
-  students: state.students
+  students: state.students.studentList
+})
+const mapDispatch = dispatch => ({
+  fetchStudents: () => dispatch(fetchStudents())
 })
 
-export default connect(mapState)(StudentList)
+
+export default withRouter(connect(mapState, mapDispatch)(StudentList))
+

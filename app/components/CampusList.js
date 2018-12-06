@@ -2,19 +2,26 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom';
 import Campus from './Campus'
+import NewCampusForm from './NewCampusForm'
+import { fetchCampuses } from '../reducers/campusReducer'
+
 
 
 class CampusList extends Component {
+  componentDidMount() {
+    this.props.fetchCampuses()
+  }
   render() {
     const campuses = this.props.campuses;
     return (
       <div className='container' >
         <h1>LIST OF CAMPUSES:</h1>
-        <ul>
           {
-            campuses.length && campuses.map(campus => <Campus key={campus.id} campus={campus} />)
+            campuses.length
+            ? campuses.map(campus => <Campus key={campus.id} campus={campus} />)
+            : <h2>No Campuses Found</h2>
           }
-        </ul>
+        <NewCampusForm />
       </div>
     )
   }
@@ -24,4 +31,8 @@ const mapState = state => ({
   campuses: state.campuses
 })
 
-export default withRouter(connect(mapState)(CampusList))
+const mapDispatch = dispatch => ({
+  fetchCampuses: () => dispatch(fetchCampuses())
+})
+
+export default withRouter(connect(mapState, mapDispatch)(CampusList))

@@ -17,14 +17,19 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.get('/:campusId', async (req, res, next) => {
+router.post('/', async (req, res, next) => {
   try {
-    const campus = await Campus.findOne({
-      include: [{
-        model: Student
-      }]
-    })
-    res.json(campus)
+    const newCampus = await Campus.create(req.body)
+    res.json(newCampus)
+  } catch (err) {
+    next(err);
+  }
+})
+
+router.delete('/:campusId', async (req, res, next) => {
+  try {
+    Campus.destroy({where: {id: req.params.campusId}})
+    res.sendStatus(204)
   } catch (err) {
     next(err)
   }

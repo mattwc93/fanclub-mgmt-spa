@@ -21,4 +21,27 @@ router.post('/', async (req, res, next) => {
   }
 })
 
+router.get('/:studentId', async (req, res, next) => {
+  try {
+    const student = await Student.findOne({
+      where: {
+        id: req.params.studentId
+      },
+      include: [Campus]
+    })
+    res.json(student)
+  } catch (err) {
+    next(err);
+  }
+})
+
+router.delete('/:studentId', async (req, res, next) => {
+  try {
+    Student.destroy({ where: { id: req.params.studentId } })
+    res.sendStatus(204)
+  } catch (err) {
+    next(err)
+  }
+})
+
 module.exports = router

@@ -27,6 +27,10 @@ nav {
   padding: 10px;
 }
 
+.navLink {
+  color: white;
+}
+
 main {
   align-items: center;
   display: flex;
@@ -39,14 +43,26 @@ main {
   height: 30px;
 }
 
-.listContainer {
+.studentContainer {
   border: 3px solid black;
   align-items: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin: 10px;
-  padding: 10px;
+  padding: 5px;
+  height: 250px;
+  width: 250px;
+}
+
+.campusContainer {
+  border: 3px solid black;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 10px;
+  padding: 5px;
 }
 
 .studentList {

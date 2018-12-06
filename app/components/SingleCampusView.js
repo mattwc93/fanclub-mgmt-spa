@@ -10,16 +10,17 @@ class SingleCampusView extends Component {
     if (!foundCampus) {
       return <div>No Campus with that ID found!</div>
     } else {
-      console.log(foundCampus.students)
       return (
         <div className='container'>
           <h1>Currently Viewed Campus:</h1>
           <Campus campus={foundCampus} />
           <h1>LIST OF STUDENTS:</h1>
           <div className='studentList' >
-              {
-                foundCampus.students.map(student => <Student key={student.id} student={student} />)
-              }
+            {
+              foundCampus.students.length
+                ? foundCampus.students.map(student => <Student key={student.id} student={student} campusView={true}/>)
+                : <p>No Students currently attending.</p>
+            }
           </div>
         </div>
       )

@@ -1,35 +1,40 @@
+// modules
 import React, { Component } from 'react'
 import { Route, Switch, Redirect, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom';
+// components:
 import CampusList from './CampusList'
 import StudentList from './StudentList'
 import SingleCampusView from './SingleCampusView'
 import SingleStudentView from './SingleStudentView'
-import { fetchStudents } from '../reducers/studentReducer'
-import { fetchCampuses } from '../reducers/campusReducer'
+import NewCampusForm from './NewCampusForm'
+import NewStudentForm from './NewStudentForm'
+import Campus from './Campus';
+import NotFoundPage from './NotFoundPage'
+// redux thunks:
 
 
 class Root extends Component{
-  componentDidMount() {
-    this.props.fetchCampuses()
-    this.props.fetchStudents()
-  }
-
   render(){
     return (
       <div>
         <nav>
-          <NavLink to='/campuses'>SEE ALL CAMPUSES</NavLink>
-          <NavLink to='/students'>SEE ALL STUDENTS</NavLink>
+          <NavLink to='/campuses' className='navLink'>SEE ALL CAMPUSES</NavLink>
+          <NavLink to='/students' className='navLink'>SEE ALL STUDENTS</NavLink>
+          <NavLink to='/campuses/add' className='navLink'>ADD A CAMPUS</NavLink>
+          <NavLink to='/students/add' className='navLink'>ADD A STUDENT</NavLink>
         </nav>
         <main>
-          <h1>Welcome to the Margaret Hamilton Academy of JavaScript!</h1>
           <Switch>
             <Route exact path="/campuses" component={CampusList} />
+            <Route exact path="/campuses/add" component={NewCampusForm} />
             <Route exact path="/students" component={StudentList} />
+            <Route exact path="/students/add" component={NewStudentForm} />
             <Route path="/campuses/:campusId" component={SingleCampusView} />
             <Route path="/students/:studentId" component={SingleStudentView} />
+            <Route exact path="/" component={CampusList} />
+            <Route path="/" component={NotFoundPage}/>
           </Switch>
         </main>
       </div>
@@ -37,9 +42,4 @@ class Root extends Component{
   }
 }
 
-const mapDispatch = dispatch => ({
-  fetchStudents: () => dispatch(fetchStudents()),
-  fetchCampuses: () => dispatch(fetchCampuses())
-})
-
-export default withRouter(connect(null, mapDispatch)(Root))
+export default Root
