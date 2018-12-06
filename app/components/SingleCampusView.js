@@ -5,10 +5,12 @@ import Student from './Student'
 import { selectCampus } from '../reducers/campusReducer'
 
 class SingleCampusView extends Component {
+  
   componentDidMount() {
     const campusId = Number(this.props.match.params.campusId)
     this.props.selectCampus(campusId)
   }
+
   render() {
     const { campus } = this.props
     if (!campus.id) {
