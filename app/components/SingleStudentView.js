@@ -12,17 +12,18 @@ class SingleStudentView extends Component {
   }
 
   render() {
-    if (!this.props.student.id) {
+    const { student } = this.props
+    if (!student.id) {
       return <div>No student with that ID found!</div>
     } else {
       return (
         <div className='container'>
           <h1>Currently Viewed Student:</h1>
-          <Student student={this.props.student} />
+          <Student student={student} />
           <h2>Campus Attended:</h2>
           {
-            this.props.student.campus
-              ? <Campus campus={this.props.student.campus} singleView={true}/>
+            student.campus
+              ? <Campus campus={student.campus} singleView={true} />
               : <h4>This Student is not currently attending one of our campuses!</h4>
           }
         </div>

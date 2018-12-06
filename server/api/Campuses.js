@@ -17,6 +17,21 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+router.get('/:campusId', async (req, res, next) => {
+  try {
+    const campus = await Campus.findOne({
+      where: {
+        id: req.params.campusId
+      },
+      include: [Student]
+    })
+    res.json(campus)
+  } catch (err) {
+    next(err);
+  }
+})
+
+
 router.post('/', async (req, res, next) => {
   try {
     const newCampus = await Campus.create(req.body)

@@ -49,13 +49,13 @@ const studentReducer = (state = initialState, action) => {
       return { ...state, studentList: [...state.studentList, action.student] }
     case REMOVE_STUDENT:
       const newStudents = state.studentList.filter(student => student.id !== action.studentId)
-      if(state.selectedStudent.id === action.studentId) {
-        return { selectedStudent: {}, studentList: newStudents }
+      if (state.selectedStudent.id === action.studentId) {
+        return { ...state, selectedStudent: {}, studentList: newStudents }
       }
       else return { ...state, studentList: newStudents }
     case GET_STUDENT:
       const currentStudent = action.student ? action.student : {}
-      return { ...state, selectedStudent: currentStudent}
+      return { ...state, selectedStudent: currentStudent }
     default:
       return state
   }

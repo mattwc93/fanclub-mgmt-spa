@@ -11,6 +11,7 @@ class CampusList extends Component {
   componentDidMount() {
     this.props.fetchCampuses()
   }
+  
   render() {
     const campuses = this.props.campuses;
     return (
@@ -28,7 +29,7 @@ class CampusList extends Component {
 }
 
 const mapState = state => ({
-  campuses: state.campuses
+  campuses: state.campuses.campusList
 })
 
 const mapDispatch = dispatch => ({

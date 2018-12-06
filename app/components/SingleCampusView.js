@@ -2,23 +2,27 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Campus from './Campus'
 import Student from './Student'
+import { selectCampus } from '../reducers/campusReducer'
 
 class SingleCampusView extends Component {
-  render() {
+  componentDidMount() {
     const campusId = Number(this.props.match.params.campusId)
-    const [foundCampus] = this.props.campuses.filter(campus => campus.id === campusId)
-    if (!foundCampus) {
+    this.props.selectCampus(campusId)
+  }
+  render() {
+    const { campus } = this.props
+    if (!campus.id) {
       return <div>No Campus with that ID found!</div>
     } else {
       return (
         <div className='container'>
           <h1>Currently Viewed Campus:</h1>
-          <Campus campus={foundCampus} />
+          <Campus campus={campus} />
           <h1>LIST OF STUDENTS:</h1>
           <div className='studentList' >
             {
-              foundCampus.students.length
-                ? foundCampus.students.map(student => <Student key={student.id} student={student} campusView={true}/>)
+              campus.students && campus.students.length
+                ? campus.students.map(student => <Student key={student.id} student={student} campusView={true}/>)
                 : <p>No Students currently attending.</p>
             }
           </div>
@@ -29,7 +33,11 @@ class SingleCampusView extends Component {
 }
 
 const mapState = state => ({
-  campuses: state.campuses
+  campus: state.campuses.selectedCampus
 })
 
-export default connect(mapState)(SingleCampusView)
+const mapDispatch = dispatch => ({
+  selectCampus: (id) => dispatch(selectCampus(id))
+})
+
+export default connect(mapState, mapDispatch)(SingleCampusView)
