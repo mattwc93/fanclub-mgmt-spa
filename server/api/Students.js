@@ -37,10 +37,20 @@ router.get('/:studentId', async (req, res, next) => {
 
 router.delete('/:studentId', async (req, res, next) => {
   try {
-    Student.destroy({ where: { id: req.params.studentId } })
+    await Student.destroy({ where: { id: req.params.studentId } })
     res.sendStatus(204)
   } catch (err) {
     next(err)
+  }
+})
+
+router.put('/:studentId', async (req, res, next) => {
+  try {
+    const studentToUpdate = await Student.findById(req.params.studentId)
+    const updatedStudent = await studentToUpdate.update(req.body)
+    res.json(updatedStudent)
+  } catch(error) {
+    next(error)
   }
 })
 

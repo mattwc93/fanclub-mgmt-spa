@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-import { postCampus } from '../reducers/campusReducer'
+import { postCampus, putCampus } from '../reducers/campusReducer'
 import { connect } from 'react-redux'
 import classNames from 'classnames'
 import CampusForm from './CampusForm'
@@ -11,7 +11,7 @@ const initialState = {
   description: '',
   imgUrl: '',
   validName: false,
-  validAddres: false,
+  validAddress: false,
   validForm: false,
   invalidSubmit: false,
   updateForm: false
@@ -34,15 +34,20 @@ class CampusFormWrapper extends Component {
       () => { this.validateFormField(name, value) })
   }
 
+  // validate all our form data before submitting
+  // check if we are in an update form or create form and call according thunk
   async handleSubmit(event) {
     event.preventDefault();
     await this.validateForm()
-    if (this.state.updateForm) {
-      this.props.history.push(`/notFound`)
-    }
-    else if (this.state.validForm) {
-      await this.props.newCampus(this.state);
-      this.props.history.push(`/campuses`)
+    if (this.state.validForm) {
+      if (this.state.updateForm) {
+        const campusId = this.props.campus.id
+        await this.props.editCampus(this.state, campusId)
+        this.props.history.push(`/campuses/${campusId}`)
+      } else {
+        await this.props.newCampus(this.state);
+        this.props.history.push(`/campuses`)
+      }
     } else {
       this.setState({
         invalidSubmit: true
@@ -85,19 +90,20 @@ class CampusFormWrapper extends Component {
   }
 
   componentDidMount() {
+    // check if we are on our update Route and set state accordingly
     if (this.props.match.params.campusId) {
       this.setState({
         ...this.props.campus,
         validName: true,
-        validAddres: true,
+        validAddress: true,
         validForm: true,
         updateForm: true,
+        invalidSubmit: true
       })
     }
   }
 
   render() {
-
     // generate our class names in case of form validation errors
     let nameClasses, addressClasses
     if (this.state.invalidSubmit) {
@@ -108,8 +114,10 @@ class CampusFormWrapper extends Component {
         'formError': !this.state.validAddress
       })
     }
+    // package up our props for easier passing/assigning
     const propClasses = { nameClasses, addressClasses }
     const propMethods = { handleChange: this.handleChange, handleSubmit: this.handleSubmit }
+
     return (
       <CampusForm
         classes={propClasses}
@@ -125,7 +133,8 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  newCampus: (campus) => dispatch(postCampus(campus))
+  newCampus: (campus) => dispatch(postCampus(campus)),
+  editCampus: (campus, id) => dispatch(putCampus(campus, id))
 })
 
 export default withRouter(connect(mapState, mapDispatch)(CampusFormWrapper))

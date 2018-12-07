@@ -5,12 +5,14 @@ const GET_ALL_CAMPUSES = 'GET_ALL_CAMPUSES'
 const GET_NEW_CAMPUS = 'GET_NEW_CAMPUS'
 const REMOVE_CAMPUS = 'REMOVE_CAMPUS'
 const GET_CAMPUS = 'GET_CAMPUS'
+const UPDATE_CAMPUS = 'UPDATE_CAMPUS'
 
 // action creators
 export const getAllCampuses = campuses => ({ type: GET_ALL_CAMPUSES, campuses })
 export const getNewCampus = campus => ({ type: GET_NEW_CAMPUS, campus })
 export const removeCampus = campusId => ({ type: REMOVE_CAMPUS, campusId })
 export const getCampus = campus => ({ type: GET_CAMPUS, campus })
+export const updateCampus = campus => ({ type: UPDATE_CAMPUS, campus })
 
 
 // thunks
@@ -37,6 +39,11 @@ export const selectCampus = (campusId) => async (dispatch) => {
   dispatch(getCampus(campus))
 }
 
+export const putCampus = (campus, campusId) => async (dispatch) => {
+  const { data: updatedCampus } = await axios.put(`/api/campuses/${campusId}`, campus)
+  dispatch(updateCampus(updatedCampus))
+}
+
 const initialState = {
   campusList: [],
   selectedCampus: {},
@@ -58,6 +65,9 @@ const campusReducer = (state = initialState, action) => {
     case GET_CAMPUS:
       const currentCampus = action.campus ? action.campus : {}
       return { ...state, selectedCampus: currentCampus }
+    case UPDATE_CAMPUS:
+      const unchangedCampuses = state.campusList.filter(campus => campus.id !== action.campus.id)
+      return { ...state, selectedCampus: {}, campusList: [...unchangedCampuses, action.campus] }
     default:
       return state
   }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-import { postStudent } from '../reducers/studentReducer'
+import { postStudent, putStudent } from '../reducers/studentReducer'
 import { connect } from 'react-redux'
 import classNames from 'classnames'
 import StudentForm from './StudentForm'
@@ -46,16 +46,21 @@ class StudentFormWrapper extends Component {
   async handleSubmit(event) {
     event.preventDefault()
     await this.validateForm()
-    if(this.state.updateForm) {
-      this.props.history.push(`/notFound`)
-    } else if (this.state.validForm) {
-      await this.props.newStudent(this.state);
-      this.props.history.push(`/students`)
+    if (this.state.validForm) {
+      if (this.state.updateForm) {
+        const studentId = this.props.student.id
+        await this.props.editStudent(this.state, studentId)
+        this.props.history.push(`/students/${studentId}`)
+      } else {
+        await this.props.newStudent(this.state);
+        this.props.history.push(`/students`)
+      }
     } else {
       this.setState({
         invalidSubmit: true
       })
     }
+
   }
 
   // Form validation helpers:
@@ -103,6 +108,7 @@ class StudentFormWrapper extends Component {
   }
 
   componentDidMount() {
+    // check if we are on our update route and initialize state to prepopulate forms
     if (this.props.match.params.studentId) {
       this.setState({
         ...this.props.student,
@@ -111,7 +117,8 @@ class StudentFormWrapper extends Component {
         validLastName: true,
         validGpa: true,
         validForm: true,
-        updateForm: true
+        updateForm: true,
+        invalidSubmit: true
       })
     }
   }
@@ -153,7 +160,8 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  newStudent: (student) => dispatch(postStudent(student))
+  newStudent: (student) => dispatch(postStudent(student)),
+  editStudent: (student, id) => dispatch(putStudent(student, id))
 })
 
 export default withRouter(connect(mapState, mapDispatch)(StudentFormWrapper))

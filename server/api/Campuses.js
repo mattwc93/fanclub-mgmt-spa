@@ -50,5 +50,15 @@ router.delete('/:campusId', async (req, res, next) => {
   }
 })
 
+router.put('/:campusId', async (req, res, next) => {
+  try {
+    const campusToUpdate = await Campus.findById(req.params.campusId)
+    const updatedCampus = await campusToUpdate.update(req.body)
+    res.json(updatedCampus)
+  } catch(error) {
+    next(error)
+  }
+})
+
 
 module.exports = router
