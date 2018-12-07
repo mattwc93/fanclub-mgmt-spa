@@ -20,7 +20,7 @@ const initialState = {
   updateForm: false
 }
 
-class NewStudentForm extends Component {
+class StudentFormWrapper extends Component {
   constructor() {
     super();
     this.state = initialState
@@ -156,4 +156,4 @@ const mapDispatch = dispatch => ({
   newStudent: (student) => dispatch(postStudent(student))
 })
 
-export default withRouter(connect(mapState, mapDispatch)(NewStudentForm))
+export default withRouter(connect(mapState, mapDispatch)(StudentFormWrapper))

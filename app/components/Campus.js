@@ -1,36 +1,19 @@
-import React, { Component } from 'react'
-import { Link, withRouter } from 'react-router-dom';
-import { connect } from 'react-redux'
-import { deleteCampus } from '../reducers/campusReducer'
+import React from 'react'
+import { Link } from 'react-router-dom';
 
-class Campus extends Component {
-  constructor() {
-    super()
-    this.handleSubmit = this.handleSubmit.bind(this)
-  }
-
-  handleSubmit() {
-    this.props.removeCampus(this.props.campus.id)
-  }
-
-  render() {
-    const campus = this.props.campus
-    return (
-      <div className="campusContainer">
-        <img src={campus.imgUrl} className="smallImg" />
-        <h4>Name: <Link to={`/campuses/${campus.id}`} >{campus.name}</Link></h4>
-        <h4>Address: </h4><p>{campus.address}</p>
-        <h4>Description:</h4><p> {campus.description}</p>
-        {
-          !this.props.singleView && <button type='button' onClick={this.handleSubmit}>Remove Campus</button>
-        }
-      </div>
-    )
-  }
+const Campus = props => {
+  const { campus, submitRemove } = props
+  return (
+    <div className="campusContainer">
+      <img src={campus.imgUrl} className="smallImg" />
+      <h4>Name: <Link to={`/campuses/${campus.id}`} >{campus.name}</Link></h4>
+      <h4>Address: </h4><p>{campus.address}</p>
+      <h4>Description:</h4><p> {campus.description}</p>
+      {
+        !props.singleView && <button type='button' onClick={submitRemove}>Remove Campus</button>
+      }
+    </div>
+  )
 }
 
-const mapDispatch = dispatch => ({
-  removeCampus: (id) => dispatch(deleteCampus(id))
-})
-
-export default withRouter(connect(null, mapDispatch)(Campus))
+export default Campus
