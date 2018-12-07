@@ -20,5 +20,8 @@ module.exports = db.define('campus', {
       notEmpty: true
     }
   },
-  description: Sequelize.TEXT,
+  description: {
+    type: Sequelize.TEXT,
+    defaultValue: 'No Description Provided.'
+  }
 })

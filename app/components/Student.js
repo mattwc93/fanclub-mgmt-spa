@@ -19,7 +19,7 @@ class Student extends Component {
     const student = this.props.student
     return (
       <div className="studentContainer" >
-        <img src={student.imageUrl} className="smallImg" />
+        <img src={student.imgUrl} className="smallImg" />
         <div>
           <h4>Name: <Link to={`/students/${student.id}`}>{student.firstName} {student.lastName}</Link></h4>
           <p>Email: {student.email}</p>
