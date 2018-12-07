@@ -11,6 +11,11 @@ class SingleStudentView extends Component {
     this.state = {
       loading: true
     }
+    this.redirectToEditPage = this.redirectToEditPage.bind(this)
+  }
+
+  redirectToEditPage() {
+    this.props.history.push(`/students/update/${this.props.student.id}`)
   }
 
   async componentDidMount() {
@@ -36,6 +41,7 @@ class SingleStudentView extends Component {
         <div className='container'>
           <h1>Currently Viewed Student:</h1>
           <Student student={student} />
+          <button type='button' onClick={this.redirectToEditPage}>EDIT</button>
           <h2>Campus Attended:</h2>
           {
             student.campus

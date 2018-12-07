@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const db = require('../database');
 
-module.exports = db.define('student', {
+const Student = db.define('student', {
   firstName: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -40,4 +40,12 @@ module.exports = db.define('student', {
     }
   }
 })
+
+Student.beforeValidate(student => {
+  if(!student.imgUrl.length) {
+    student.imgUrl ='https://imageog.flaticon.com/icons/png/512/43/43067.png?size=1200x630f&pad=10,10,10,10&ext=png&bg=FFFFFFFF'
+  }
+})
+
+module.exports = Student
 

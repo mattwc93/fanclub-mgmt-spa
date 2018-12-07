@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const db = require('../database');
 
-module.exports = db.define('campus', {
+const Campus = db.define('campus', {
   name: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -25,3 +25,11 @@ module.exports = db.define('campus', {
     defaultValue: 'No Description Provided.'
   }
 })
+
+Campus.beforeValidate(campus => {
+  if(!campus.imgUrl.length) {
+    campus.imgUrl = '/images/defaultSchoolIcon.jpg'
+  }
+})
+
+module.exports = Campus

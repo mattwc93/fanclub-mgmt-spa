@@ -30,6 +30,8 @@ class Root extends Component{
             <Route exact path="/campuses/add" component={NewCampusForm} />
             <Route exact path="/students" component={StudentList} />
             <Route exact path="/students/add" component={NewStudentForm} />
+            <Route exact path="/students/update/:studentId" component={NewStudentForm} />
+            <Route exact path="/campuses/update/:campusId" component={NewCampusForm} />
             <Route path="/campuses/:campusId" component={SingleCampusView} />
             <Route path="/students/:studentId" component={SingleStudentView} />
             <Route exact path="/" component={LandingPage} />

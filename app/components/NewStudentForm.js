@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom'
 import { postStudent } from '../reducers/studentReducer'
 import { connect } from 'react-redux'
 import classNames from 'classnames'
+import StudentForm from './StudentForm'
 
 const initialState = {
   firstName: '',
@@ -15,7 +16,8 @@ const initialState = {
   validFirstName: false,
   validLastName: false,
   validGpa: false,
-  validForm: false
+  validForm: false,
+  updateForm: false
 }
 
 class NewStudentForm extends Component {
@@ -42,9 +44,11 @@ class NewStudentForm extends Component {
   // if they are all valid: add to database and update redux state, then redirect to the all students view
   // otherwise set our submission as invalid on local state so invalid fields will be highlighted
   async handleSubmit(event) {
-    event.preventDefault();
+    event.preventDefault()
     await this.validateForm()
-    if (this.state.validForm) {
+    if(this.state.updateForm) {
+      this.props.history.push(`/notFound`)
+    } else if (this.state.validForm) {
       await this.props.newStudent(this.state);
       this.props.history.push(`/students`)
     } else {
@@ -53,7 +57,6 @@ class NewStudentForm extends Component {
       })
     }
   }
-
 
   // Form validation helpers:
   //  validateFormField:
@@ -99,9 +102,22 @@ class NewStudentForm extends Component {
     })
   }
 
-  render() {
-    const { firstName, lastName, email, gpa, imgUrl } = this.state
+  componentDidMount() {
+    if (this.props.match.params.studentId) {
+      this.setState({
+        ...this.props.student,
+        validEmail: true,
+        validFirstName: true,
+        validLastName: true,
+        validGpa: true,
+        validForm: true,
+        updateForm: true
+      })
+    }
+  }
 
+
+  render() {
     // generate our class names in case of form validation errors
     let emailClasses, firstNameClasses, lastNameClasses, gpaClasses
     if (this.state.invalidSubmit) {
@@ -119,51 +135,25 @@ class NewStudentForm extends Component {
       })
     }
 
+    // put props into objects for easier passing
+    const classProps = { emailClasses, firstNameClasses, lastNameClasses, gpaClasses }
+    const methodProps = { handleChange: this.handleChange, handleSubmit: this.handleSubmit }
     return (
-      <form onSubmit={this.handleSubmit} className='campusContainer'>
-        <h2>ADD NEW STUDENT:</h2>
-        <label htmlFor='firstName'>First Name:
-          {
-            this.state.invalidSubmit
-            && !this.state.validFirstName
-            && <span className="warning"> required!</span>
-          }
-        </label>
-        <input name='firstName' className={firstNameClasses} value={firstName} onChange={this.handleChange} />
-        <label htmlFor='lastName'>Last Name:
-          {
-            this.state.invalidSubmit
-            && !this.state.validLastName
-            && <span className="warning"> required!</span>
-          }
-        </label>
-        <input name='lastName' value={lastName} className={lastNameClasses} onChange={this.handleChange} />
-        <label htmlFor='email'>Email:
-          {
-            this.state.invalidSubmit
-            && !this.state.validEmail
-            && <span className="warning"> must be of format example@example.com</span>
-          }
-        </label>
-        <input name='email' className={emailClasses} value={email} onChange={this.handleChange} />
-        <label htmlFor='gpa'>GPA:
-          {
-            this.state.invalidSubmit
-            && !this.state.validGpa
-            && <span className="warning"> must be between 0.0 and 4.0</span>
-          }
-        </label>
-        <input name='gpa' type='float' className={gpaClasses} value={gpa} onChange={this.handleChange} />
-        <label htmlFor='imgUrl'>Image URL:</label>
-        <input name='imgUrl' onChange={this.handleChange} value={imgUrl} />
-        <button type='submit'>SUBMIT</button>
-      </form>
+      <StudentForm
+        methods={methodProps}
+        classes={classProps}
+        state={this.state}
+      />
     )
   }
 }
+
+const mapState = state => ({
+  student: state.students.selectedStudent
+})
 
 const mapDispatch = dispatch => ({
   newStudent: (student) => dispatch(postStudent(student))
 })
 
-export default withRouter(connect(null, mapDispatch)(NewStudentForm))
+export default withRouter(connect(mapState, mapDispatch)(NewStudentForm))

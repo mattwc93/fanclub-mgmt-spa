@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
 import Campus from './Campus'
 import Student from './Student'
 import { selectCampus } from '../reducers/campusReducer'
@@ -12,6 +11,11 @@ class SingleCampusView extends Component {
     this.state = {
       loading: true
     }
+    this.redirectToEditPage = this.redirectToEditPage.bind(this)
+  }
+
+  redirectToEditPage() {
+    this.props.history.push(`/campuses/update/${this.props.campus.id}`)
   }
 
   async componentDidMount() {
@@ -37,6 +41,7 @@ class SingleCampusView extends Component {
         <div className='container'>
           <h1>Currently Viewed Campus:</h1>
           <Campus campus={campus} />
+          <button type='button' onClick={this.redirectToEditPage}>EDIT</button>
           <h1>LIST OF STUDENTS:</h1>
           <div className='studentList' >
             {
@@ -59,4 +64,4 @@ const mapDispatch = dispatch => ({
   selectCampus: (id) => dispatch(selectCampus(id))
 })
 
-export default withRouter(connect(mapState, mapDispatch)(SingleCampusView))
+export default connect(mapState, mapDispatch)(SingleCampusView)

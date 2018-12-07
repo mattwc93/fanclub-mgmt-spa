@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom'
 import { postCampus } from '../reducers/campusReducer'
 import { connect } from 'react-redux'
 import classNames from 'classnames'
+import CampusForm from './CampusForm'
 
 const initialState = {
   name: '',
@@ -12,7 +13,8 @@ const initialState = {
   validName: false,
   validAddres: false,
   validForm: false,
-  invalidSubmit: false
+  invalidSubmit: false,
+  updateForm: false
 }
 class NewCampusForm extends Component {
   constructor() {
@@ -35,7 +37,10 @@ class NewCampusForm extends Component {
   async handleSubmit(event) {
     event.preventDefault();
     await this.validateForm()
-    if (this.state.validForm) {
+    if (this.state.updateForm) {
+      this.props.history.push(`/notFound`)
+    }
+    else if (this.state.validForm) {
       await this.props.newCampus(this.state);
       this.props.history.push(`/campuses`)
     } else {
@@ -79,8 +84,19 @@ class NewCampusForm extends Component {
     })
   }
 
+  componentDidMount() {
+    if (this.props.match.params.campusId) {
+      this.setState({
+        ...this.props.campus,
+        validName: true,
+        validAddres: true,
+        validForm: true,
+        updateForm: true,
+      })
+    }
+  }
+
   render() {
-    const { name, address, description, imgUrl } = this.state
 
     // generate our class names in case of form validation errors
     let nameClasses, addressClasses
@@ -92,26 +108,24 @@ class NewCampusForm extends Component {
         'formError': !this.state.validAddress
       })
     }
-
+    const propClasses = { nameClasses, addressClasses }
+    const propMethods = { handleChange: this.handleChange, handleSubmit: this.handleSubmit }
     return (
-      <form onSubmit={this.handleSubmit} className='campusContainer'>
-        <h2>ADD NEW CAMPUS:</h2>
-        <label htmlFor='name'>Name:</label>
-        <input name='name' onChange={this.handleChange} className={nameClasses} value={name} />
-        <label htmlFor='address'>Address:</label>
-        <input name='address' onChange={this.handleChange} className={addressClasses} value={address} />
-        <label htmlFor='imgUrl'>Image URL:</label>
-        <input name='imgUrl' onChange={this.handleChange} value={imgUrl} />
-        <label htmlFor='description'>Description:</label>
-        <textarea name='description' onChange={this.handleChange} value={description} />
-        <button type='submit'>SUBMIT</button>
-      </form>
+      <CampusForm
+        classes={propClasses}
+        methods={propMethods}
+        state={this.state}
+      />
     )
   }
 }
+
+const mapState = state => ({
+  campus: state.campuses.selectedCampus
+})
 
 const mapDispatch = dispatch => ({
   newCampus: (campus) => dispatch(postCampus(campus))
 })
 
-export default withRouter(connect(null, mapDispatch)(NewCampusForm))
+export default withRouter(connect(mapState, mapDispatch)(NewCampusForm))
