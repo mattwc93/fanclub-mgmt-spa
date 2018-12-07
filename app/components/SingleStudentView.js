@@ -6,14 +6,30 @@ import { selectStudent } from '../reducers/studentReducer'
 
 class SingleStudentView extends Component {
 
-  componentDidMount() {
+  constructor() {
+    super()
+    this.state = {
+      loading: true
+    }
+  }
+
+  async componentDidMount() {
     const studentId = Number(this.props.match.params.studentId)
-    this.props.selectStudent(studentId)
+    if (isNaN(studentId)) {
+      this.props.history.push('/notFound')
+    } else {
+      await this.props.selectStudent(studentId)
+      this.setState({
+        loading: false
+      })
+    }
   }
 
   render() {
     const { student } = this.props
-    if (!student.id) {
+    if (this.state.loading) {
+      return <h1>LOADING STUDENT...</h1>
+    } else if (!student.id) {
       return <div>No student with that ID found!</div>
     } else {
       return (

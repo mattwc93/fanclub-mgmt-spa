@@ -21,10 +21,13 @@ class NewCampusForm extends Component {
     })
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
     event.preventDefault();
-    this.props.newCampus(this.state);
+    await this.props.newCampus(this.state);
     this.setState(initialState)
+    setTimeout(() => {
+      this.props.history.push(`/campuses`)
+    }, 500)
   }
 
   render() {

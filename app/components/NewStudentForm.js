@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
 import { postStudent } from '../reducers/studentReducer'
 import { connect } from 'react-redux'
 
@@ -7,6 +8,7 @@ const initialState = {
   lastName: '',
   email: '',
   gpa: '',
+  hasSubmitted: false
 }
 
 class NewStudentForm extends Component {
@@ -23,10 +25,17 @@ class NewStudentForm extends Component {
     })
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
     event.preventDefault();
-    this.props.newStudent(this.state);
-    this.setState(initialState)
+    try {
+      await this.props.newStudent(this.state);
+      this.setState(initialState)
+      this.props.history.push(`/students`)
+    } catch (error) {
+      this.setState({
+        hasSubmitted: true
+      })
+    }
   }
 
   render() {
@@ -34,13 +43,23 @@ class NewStudentForm extends Component {
     return (
       <form onSubmit={this.handleSubmit} className='campusContainer'>
         <h2>ADD NEW STUDENT:</h2>
-        <label htmlFor='firstName'>First Name:</label>
+        <label htmlFor='firstName'>First Name:
+        </label>
         <input name='firstName' value={firstName} onChange={this.handleChange} required />
-        <label htmlFor='lastName'>Last Name:<span className="warning">WARNING</span></label>
+        <label htmlFor='lastName'>Last Name:
+        </label>
         <input name='lastName' value={lastName} onChange={this.handleChange} required />
-        <label htmlFor='email'>Email:</label>
+        <label htmlFor='email'>Email:
+          {
+            this.state.hasSubmitted && <span className="warning">Email must be of format: example@example.com</span>
+          }
+        </label>
         <input name='email' value={email} onChange={this.handleChange} required />
-        <label htmlFor='gpa'>GPA:</label>
+        <label htmlFor='gpa'>GPA:
+          {
+            this.state.hasSubmitted && <span className="warning">GPA must be between 0.0 and 4.0</span>
+          }
+        </label>
         <input name='gpa' type='float' value={gpa} onChange={this.handleChange} required />
         <button type='submit'>SUBMIT</button>
       </form>
@@ -52,4 +71,4 @@ const mapDispatch = dispatch => ({
   newStudent: (student) => dispatch(postStudent(student))
 })
 
-export default connect(null, mapDispatch)(NewStudentForm)
+export default withRouter(connect(null, mapDispatch)(NewStudentForm))

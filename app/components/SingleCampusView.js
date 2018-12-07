@@ -1,19 +1,36 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import Campus from './Campus'
 import Student from './Student'
 import { selectCampus } from '../reducers/campusReducer'
 
 class SingleCampusView extends Component {
-  
-  componentDidMount() {
+
+  constructor() {
+    super()
+    this.state = {
+      loading: true
+    }
+  }
+
+  async componentDidMount() {
     const campusId = Number(this.props.match.params.campusId)
-    this.props.selectCampus(campusId)
+    if (isNaN(campusId)) {
+      this.props.history.push('/notFound')
+    } else {
+      await this.props.selectCampus(campusId)
+      this.setState({
+        loading: false
+      })
+    }
   }
 
   render() {
     const { campus } = this.props
-    if (!campus.id) {
+    if (this.state.loading) {
+      return <h1>LOADING CAMPUS...</h1>
+    } else if (!campus.id) {
       return <div>No Campus with that ID found!</div>
     } else {
       return (
@@ -24,7 +41,7 @@ class SingleCampusView extends Component {
           <div className='studentList' >
             {
               campus.students && campus.students.length
-                ? campus.students.map(student => <Student key={student.id} student={student} campusView={true}/>)
+                ? campus.students.map(student => <Student key={student.id} student={student} campusView={true} />)
                 : <p>No Students currently attending.</p>
             }
           </div>
@@ -42,4 +59,4 @@ const mapDispatch = dispatch => ({
   selectCampus: (id) => dispatch(selectCampus(id))
 })
 
-export default connect(mapState, mapDispatch)(SingleCampusView)
+export default withRouter(connect(mapState, mapDispatch)(SingleCampusView))

@@ -11,11 +11,17 @@ class CampusList extends Component {
 
   constructor() {
     super()
+    this.state = {
+      loading: true
+    }
     this.handleClick = this.handleClick.bind(this)
   }
 
-  componentDidMount() {
-    this.props.fetchCampuses()
+  async componentDidMount() {
+    await this.props.fetchCampuses()
+    this.setState({
+      loading: false
+    })
   }
 
   handleClick() {
@@ -24,28 +30,34 @@ class CampusList extends Component {
 
   render() {
     const { campuses } = this.props
-    return (
-      <React.Fragment>
-        <button type='button' onClick={this.handleClick} >ADD A CAMPUS</button>
-        <div className='container' >
-          <h1>LIST OF CAMPUSES:</h1>
-          {
-            campuses.length
-              ? campuses.map(campus => <Campus key={campus.id} campus={campus} />)
-              : <h2>No Campuses Found</h2>
-          }
-        </div>
-      </React.Fragment>
-    )
+    if (this.state.loading) {
+      return <h1>LOADING CAMPUSES...</h1>
+    } else {
+      return (
+        <React.Fragment>
+          <button type='button' onClick={this.handleClick} >ADD A CAMPUS</button>
+          <div className='container' >
+            <h1>LIST OF CAMPUSES:</h1>
+            {
+              campuses.length
+                ? campuses.map(campus => <Campus key={campus.id} campus={campus} />)
+                : <h2>No Campuses Found</h2>
+            }
+          </div>
+        </React.Fragment>
+      )
+    }
   }
 }
 
 const mapState = state => ({
-  campuses: state.campuses.campusList
+  campuses: state.campuses.campusList,
+  error: state.campuses.error
 })
 
 const mapDispatch = dispatch => ({
-  fetchCampuses: () => dispatch(fetchCampuses())
+  fetchCampuses: () => dispatch(fetchCampuses()),
+
 })
 
 export default withRouter(connect(mapState, mapDispatch)(CampusList))

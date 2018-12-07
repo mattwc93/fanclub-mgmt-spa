@@ -5,12 +5,16 @@ const GET_ALL_CAMPUSES = 'GET_ALL_CAMPUSES'
 const GET_NEW_CAMPUS = 'GET_NEW_CAMPUS'
 const REMOVE_CAMPUS = 'REMOVE_CAMPUS'
 const GET_CAMPUS = 'GET_CAMPUS'
+const SERVER_ERROR = 'SERVER_ERROR'
+const CLEAR_ERROR = 'CLEAR_ERROR'
 
 // action creators
 export const getAllCampuses = campuses => ({ type: GET_ALL_CAMPUSES, campuses })
 export const getNewCampus = campus => ({ type: GET_NEW_CAMPUS, campus })
 export const removeCampus = campusId => ({ type: REMOVE_CAMPUS, campusId })
 export const getCampus = campus => ({ type: GET_CAMPUS, campus })
+export const serverError = error => ({ type: SERVER_ERROR, error })
+export const clearError = () => ({type: CLEAR_ERROR})
 
 // thunks
 
@@ -32,13 +36,18 @@ export const deleteCampus = (campusId) => async (dispatch) => {
 }
 
 export const selectCampus = (campusId) => async (dispatch) => {
-  const { data: campus } = await axios.get(`/api/campuses/${campusId}`)
-  dispatch(getCampus(campus))
+  try {
+    const { data: campus } = await axios.get(`/api/campuses/${campusId}`)
+    dispatch(getCampus(campus))
+  } catch (error) {
+    dispatch(serverError('INVALID URL'))
+  }
 }
 
 const initialState = {
   campusList: [],
-  selectedCampus: {}
+  selectedCampus: {},
+  error: null
 }
 
 const campusReducer = (state = initialState, action) => {
@@ -49,13 +58,17 @@ const campusReducer = (state = initialState, action) => {
       return { ...state, campusList: [...state, action.campus] }
     case REMOVE_CAMPUS:
       const newCampuses = state.campusList.filter(campus => campus.id !== action.campusId)
-      if(state.selectedCampus.id === action.campusId) {
-        return {...state, selectedCampus: {}, campusList: newCampuses}
+      if (state.selectedCampus.id === action.campusId) {
+        return { ...state, selectedCampus: {}, campusList: newCampuses }
       }
       else return { ...state, campusList: newCampuses }
     case GET_CAMPUS:
       const currentCampus = action.campus ? action.campus : {}
       return { ...state, selectedCampus: currentCampus }
+    case SERVER_ERROR:
+      return { ...state, error: action.error}
+    case CLEAR_ERROR:
+      return { ...state, error: null}
     default:
       return state
   }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { deleteStudent } from '../reducers/studentReducer'
 
@@ -21,11 +21,11 @@ class Student extends Component {
       <div className="studentContainer" >
         <img src={student.imageUrl} className="smallImg" />
         <div>
-          <h4>Name: <NavLink to={`/students/${student.id}`}>{student.firstName} {student.lastName}</NavLink></h4>
+          <h4>Name: <Link to={`/students/${student.id}`}>{student.firstName} {student.lastName}</Link></h4>
           <p>Email: {student.email}</p>
           <p>GPA: {student.gpa}</p>
           {
-            student.campus && <p>School: <NavLink to={`/campuses/${student.campus.id}`} >{student.campus.name}</NavLink></p>
+            student.campus && <p>School: <Link to={`/campuses/${student.campus.id}`} >{student.campus.name}</Link></p>
           }
         </div>
         {
