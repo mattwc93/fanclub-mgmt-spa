@@ -286,7 +286,7 @@ const randomGpa = () => {
 }
 
 const getCampusId = () => {
-  let campusId = randomNum(0, NUMCAMPUSES)
+  let campusId = randomNum(0, schoolNames.length - 1)
   if(!campusId) campusId = null
   return campusId
 }
@@ -316,7 +316,19 @@ for(let i = 1; i <= NUMSTUDENTS; i++) {
   students.push(newStudent)
 }
 
-const campuses = []
+const campuses = schoolNames.map(name => {
+  const address = makeAddress()
+  const description = makeDescription()
+  const imgUrl = makeImgUrl()
+  const newCampus = {
+    name,
+    address,
+    description,
+    imgUrl,
+  }
+  return newCampus
+})
+
 
 for(let i = 1; i <= NUMCAMPUSES; i++) {
   const name = makeSchoolName()
