@@ -9,7 +9,7 @@
 }
 
 body {
-  background: linear-gradient(#ffffff, #c0c0c0);
+  background-color: black;
   height: 100vh;
   padding: 0;
   margin: 0;
@@ -18,65 +18,189 @@ body {
 
 nav {
   align-items: center;
-  background-color: #333333;
-  color: #c0c0c0;
+  background-color: black;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   height: 80px;
+  width: 100%;
   padding: 10px;
+  position: fixed;
+  top: 0;
 }
 
 .navLink {
-  color: white;
+  color: rgb(146, 50, 243);
+  text-decoration: none;
+  font-size: 2em;
+  border: 2px solid rgb(146, 50, 243);
+  padding: 3px;
+  border-radius: 10px;
 }
 
-main {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.navLink:hover {
+  color: black;
+  background-color: rgb(146, 50, 243);
 }
 
-.smallImg {
-  height: 25%;
-  width: 40%;
+.fullCardLink {
+  text-decoration: none;
+}
+
+.cardLink {
+  background-color: black;
+  color: rgb(146, 50, 243);
+  text-decoration: none;
+  text-align: center;
+  font-size: 1em;
+  border: 1px solid rgb(69, 9, 129);
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.card_btn {
+  background-color: black;
+  border: 1px solid rgb(69, 9, 129);
+  color: rgb(146, 50, 243);
+  padding: 2px;
+  border-radius: 5px;
+}
+
+.add_btn {
+  background-color: black;
+  border: 3px solid rgb(69, 9, 129);
+  color: rgb(146, 50, 243);
+  border-radius: 15px;
+  height: 70px;
+  width: 200px;
+  font-size: 20px;
+}
+
+.add_btn:hover{
+  background-color: rgb(146, 50, 243);
+  border: 3px solid black;
+  color: black;
+  cursor: pointer;
 }
 
 .studentContainer {
+  border: 1px solid black;
+}
+
+main {
+  background-color: rgb(146, 50, 243);
+  margin-top: 40px;
+}
+
+.cardImg {
+  height: 150px;
+  width: 150px;
+  border-radius: 10px;
+  border: 2px solid rgb(146, 50, 243);
+}
+
+.cardContainer {
   border: 3px solid black;
+  border-radius: 15px;
+  align-content: space-evenly;
   align-items: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  margin: 10px;
+  justify-content: space-evenly;
+  background-color: black;
+  height: 250px;
+  width: 275px;
+  margin-bottom: 10px;
   padding: 5px;
-  height: 400px;
-  width: 250px;
+}
+
+.campusCard {
+  border: 1px solid purple;
 }
 
 .campusContainer {
   border: 3px solid black;
   align-items: center;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   margin: 10px;
-  padding: 5px;
+  padding: 40px;
+  background-color: black;
+  color: rgb(146, 50, 243);
+  border-radius: 10px;
+}
+
+.campusContainer img {
+  height: 500px;
+  width: 500px;
+}
+
+.singleView {
+  margin-left: 50px;
+  padding: 10px;
+  border: 2px solid black;
+  height: 400px;
+  background-color: rgb(146, 50, 243);
+  color: black;
+  border-radius: 10px;
+  outline: 6px solid rgb(146, 50, 243);
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.rowCentered {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border: 3px solid black;
+  margin: 10px;
+  background-color: black;
+  color: rgb(146, 50, 243);
+  border-radius: 10px;
+}
+
+.listHeader {
+  border-radius: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+#landing{
+  border-radius: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .studentList {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
+  width: 100%;
+  justify-content: space-evenly;
+  align-content: space-evenly;
 }
 
-.container {
+.listHeader h1 {
+  font-size: 70px;
+}
+
+.column {
   align-items: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  flex: 1;
 }
 
 .hidden {
@@ -85,4 +209,13 @@ main {
 
 .formError {
   border: 2px solid rgb(255, 0, 0);
+}
+
+#landingImg {
+  height: 800px;
+  width: 2500px;
+}
+
+#bigText {
+  font-size: 120px;
 }

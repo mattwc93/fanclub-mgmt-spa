@@ -1,15 +1,11 @@
-import React, { Component } from 'react'
-import { Link, withRouter } from 'react-router-dom';
-import { connect } from 'react-redux'
-// import { deleteStudent } from '../reducers/studentReducer'
-
-
+import React from 'react'
+import { Link } from 'react-router-dom';
 
 const Student = props => {
   const { student, submitRemove } = props
   return (
     <div className="studentContainer" >
-      <img src={student.imgUrl} className="smallImg" />
+      <img src={student.imgUrl} className="cardImg" />
       <h4>Name: <Link to={`/students/${student.id}`}>{student.firstName} {student.lastName}</Link></h4>
       <p>Email: {student.email}</p>
       <p>GPA: {student.gpa}</p>

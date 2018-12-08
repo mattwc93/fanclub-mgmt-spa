@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Campus from './Campus'
-import Student from './Student'
+import StudentCard from './StudentCard'
 import { selectCampus, deleteCampus } from '../reducers/campusReducer'
 
 class SingleCampusView extends Component {
@@ -55,15 +55,19 @@ class SingleCampusView extends Component {
       return <div>No Campus with that ID found!</div>
     } else {
       return (
-        <div className='container'>
-          <h1>Currently Viewed Campus:</h1>
+        <div>
+          <div className='listHeader'>
+            <h1>{campus.name}:</h1>
+            <button type='submit' className='add_btn' onClick={this.redirectToEditPage}>EDIT</button>
+          </div>
           <Campus campus={campus} submitRemove={this.submitRemove} />
-          <button type='button' onClick={this.redirectToEditPage}>EDIT</button>
-          <h1>LIST OF STUDENTS:</h1>
-          <div className='studentList' >
+          <div className='rowCentered'>
+            <h1>STUDENTS CURRENTLY ATTENDING {campus.name.toUpperCase()}:</h1>
+          </div>
+          <div className='studentList row wrap' >
             {
               campus.students && campus.students.length
-                ? campus.students.map(student => <Student key={student.id} student={student} campusView={true} />)
+                ? campus.students.map(student => <StudentCard key={student.id} student={student} campusView={true} />)
                 : <p>No Students currently attending.</p>
             }
           </div>

@@ -292,7 +292,7 @@ const getCampusId = () => {
 }
 
 const makeImgUrl = () => {
-  const num = randomNum(100,1000)
+  const num = randomNum(1,40) * 25
   return `https://www.placecage.com/${num}/${num}`
 }
 

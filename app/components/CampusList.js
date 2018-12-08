@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom';
-import Campus from './Campus'
-// import NewCampusForm from './NewCampusForm'
+import CampusCard from './CampusCard'
 import { fetchCampuses } from '../reducers/campusReducer'
 
 
@@ -34,17 +33,20 @@ class CampusList extends Component {
       return <h1>LOADING CAMPUSES...</h1>
     } else {
       return (
-        <React.Fragment>
-          <button type='button' onClick={this.handleClick} >ADD A CAMPUS</button>
-          <div className='container' >
-            <h1>LIST OF CAMPUSES:</h1>
+        <div>
+          <div className="listHeader">
+            <h1>ALL CAMPUSES:</h1>
+            <button type='submit' onClick={this.handleClick} className='add_btn' >ADD A CAMPUS</button>
+          </div>
+          <div className='row wrap studentList' >
             {
               campuses.length
-                ? campuses.map(campus => <Campus key={campus.id} campus={campus} />)
+                ? campuses.map(campus => <CampusCard key={campus.id} campus={campus} />)
                 : <h2>No Campuses Found</h2>
             }
           </div>
-        </React.Fragment>
+          <a href='#top'>TOP</a>
+        </div>
       )
     }
   }
@@ -52,7 +54,6 @@ class CampusList extends Component {
 
 const mapState = state => ({
   campuses: state.campuses.campusList,
-  error: state.campuses.error
 })
 
 const mapDispatch = dispatch => ({

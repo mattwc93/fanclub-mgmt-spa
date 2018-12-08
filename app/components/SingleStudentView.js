@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Campus from './Campus'
+import CampusCard from './CampusCard'
 import Student from './Student'
 import { selectStudent, deleteStudent } from '../reducers/studentReducer'
 
@@ -58,11 +58,11 @@ class SingleStudentView extends Component {
         <div className='container'>
           <h1>Currently Viewed Student:</h1>
           <Student student={student} submitRemove={this.submitRemove} />
-          <button type='button' onClick={this.redirectToEditPage}>EDIT</button>
+          <button type='submit' onClick={this.redirectToEditPage}>EDIT</button>
           <h2>Campus Attended:</h2>
           {
             student.campus
-              ? <Campus campus={student.campus} singleView={true} />
+              ? <CampusCard campus={student.campus} singleView={true} />
               : <h4>This Student is not currently attending one of our campuses!</h4>
           }
         </div>

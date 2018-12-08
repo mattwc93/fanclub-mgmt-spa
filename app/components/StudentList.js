@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import Student from './Student'
+// import Student from './Student'
+import StudentCard from './StudentCard'
 // import NewStudentForm from './NewStudentForm';
 import { fetchStudents } from '../reducers/studentReducer'
 
@@ -32,23 +33,24 @@ class StudentList extends Component {
       return <h1>LOADING STUDENTS...</h1>
     } else {
       return (
-        <React.Fragment>
-          <button type='button' onClick={this.handleClick} >ADD A STUDENT</button>
-          <div className='container' >
-            <h1>LIST OF STUDENTS:</h1>
-            <div className='studentList'>
-              {
-                students.length
-                  ? students.map(student => {
-                    return (
-                      <Student key={student.id} student={student} />
-                    )
-                  })
-                  : <h1>NO STUDENTS IN DATABASE</h1>
-              }
-            </div>
+        <div>
+          <div className='listHeader'>
+            <h1>ALL STUDENTS:</h1>
+            <button type='submit' className='add_btn' onClick={this.handleClick} >ADD A STUDENT</button>
           </div>
-        </React.Fragment>
+          <div className='row wrap studentList'>
+            {
+              students.length
+                ? students.map(student => {
+                  return (
+                    <StudentCard key={student.id} student={student} />
+                  )
+                })
+                : <h1>NO STUDENTS IN DATABASE</h1>
+            }
+          </div>
+          <a href='#top'>TOP</a>
+        </div>
       )
     }
   }

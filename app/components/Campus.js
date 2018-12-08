@@ -6,12 +6,13 @@ const Campus = props => {
   return (
     <div className="campusContainer">
       <img src={campus.imgUrl} className="smallImg" />
-      <h4>Name: <Link to={`/campuses/${campus.id}`} >{campus.name}</Link></h4>
-      <h4>Address: </h4><p>{campus.address}</p>
-      <h4>Description:</h4><p> {campus.description}</p>
-      {
-        !props.singleView && <button type='button' onClick={submitRemove}>Remove Campus</button>
-      }
+      <div className='column singleView'>
+        <h4>Address: </h4><p>{campus.address}</p>
+        <h4>Description:</h4><p> {campus.description}</p>
+        {
+          !props.singleView && <button type='submit' className='add_btn' onClick={submitRemove}>Remove Campus</button>
+        }
+      </div>
     </div>
   )
 }
