@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom'
 
 class NotFoundPage extends Component {
   componentDidMount() {
+    this.props.history.push('#top')
     setTimeout(() => {
       this.props.history.push(`/`)
     }, 5000)

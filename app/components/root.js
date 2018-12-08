@@ -1,8 +1,6 @@
 // modules
 import React, { Component } from 'react'
-import { Route, Switch, Redirect, NavLink } from 'react-router-dom';
-// import { connect } from 'react-redux'
-// import { withRouter } from 'react-router-dom';
+import { Route, Switch, Link } from 'react-router-dom';
 // components:
 import CampusList from './CampusList'
 import StudentList from './StudentList'
@@ -20,9 +18,9 @@ class Root extends Component{
     return (
       <div>
         <nav>
-          <NavLink to='/' className='navLink'>HOME</NavLink>
-          <NavLink to='/campuses' className='navLink'>CAMPUSES</NavLink>
-          <NavLink to='/students' className='navLink'>STUDENTS</NavLink>
+          <Link to='/' className='navLink'>HOME</Link>
+          <Link to='/campuses' className='navLink'>CAMPUSES</Link>
+          <Link to='/students' className='navLink'>STUDENTS</Link>
         </nav>
         <main>
           <Switch>

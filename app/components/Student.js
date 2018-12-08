@@ -13,7 +13,7 @@ const Student = props => {
         student.campus && <p>School: <Link to={`/campuses/${student.campus.id}`} >{student.campus.name}</Link></p>
       }
       {
-        !props.campusView && <button type='button' onClick={submitRemove}>Remove Student</button>
+        !props.campusView && <button type='button' className='add_btn' onClick={submitRemove}>Remove Student</button>
       }
     </div >
   )

@@ -2,7 +2,6 @@ const { db, Student, Campus } = require('./server/db/models')
 const { green, red } = require('chalk')
 
 const NUMSTUDENTS = 50
-const NUMCAMPUSES = 10
 
 const emailPostfix = [
   'gmail.com',
@@ -292,7 +291,7 @@ const getCampusId = () => {
 }
 
 const makeImgUrl = () => {
-  const num = randomNum(1,40) * 25
+  const num = randomNum(10, 24) * 25
   return `https://www.placecage.com/${num}/${num}`
 }
 
@@ -328,21 +327,6 @@ const campuses = schoolNames.map(name => {
   }
   return newCampus
 })
-
-
-for(let i = 1; i <= NUMCAMPUSES; i++) {
-  const name = makeSchoolName()
-  const address = makeAddress()
-  const description = makeDescription()
-  const imgUrl = makeImgUrl()
-  const newCampus = {
-    name,
-    address,
-    description,
-    imgUrl,
-  }
-  campuses.push(newCampus)
-}
 
 const seed = () =>
   Promise.all(campuses.map(campus =>

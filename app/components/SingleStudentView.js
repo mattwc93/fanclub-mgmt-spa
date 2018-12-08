@@ -25,7 +25,7 @@ class SingleStudentView extends Component {
     this.setState({
       redirecting: true
     })
-    setTimeout(() => {this.props.history.push(`/students/`)}, 1500)
+    setTimeout(() => { this.props.history.push(`/students/`) }, 1500)
   }
 
   async componentDidMount() {
@@ -58,7 +58,7 @@ class SingleStudentView extends Component {
         <div className='container'>
           <h1>Currently Viewed Student:</h1>
           <Student student={student} submitRemove={this.submitRemove} />
-          <button type='submit' onClick={this.redirectToEditPage}>EDIT</button>
+          <button type='submit' className='add_btn' onClick={this.redirectToEditPage}>EDIT</button>
           <h2>Campus Attended:</h2>
           {
             student.campus

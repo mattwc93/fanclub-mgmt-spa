@@ -5,7 +5,7 @@ const StudentForm = props => {
   const { invalidSubmit, validFirstName, validEmail, validLastName, validGpa, firstName, lastName, email, gpa, imgUrl } = props.state
   const { firstNameClasses, lastNameClasses, emailClasses, gpaClasses } = props.classes
   return (
-    <form onSubmit={handleSubmit} className='campusContainer'>
+    <form onSubmit={handleSubmit} autocomplete='off' className='column'>
       <h2>ADD NEW STUDENT:</h2>
       <label htmlFor='firstName'>First Name:
         {

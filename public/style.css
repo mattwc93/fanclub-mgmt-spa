@@ -29,6 +29,38 @@ nav {
   top: 0;
 }
 
+form {
+  margin-top: 100px;
+  background-color: black;
+  color: rgb(146, 50, 243);
+}
+
+label {
+  font-size: 20px;
+}
+
+textarea {
+  background-color: rgb(146, 50, 243);
+  color: black;
+  border: black;
+  width: 500px;
+  height: 150px;
+  font-size: 15px;
+  font-weight: bold; 
+  margin: 5px;
+}
+
+input {
+  margin: 5px;
+  background-color: rgb(146, 50, 243);
+  color: black;
+  border: black;
+  width: 250px;
+  height: 25px;
+  font-size: 15px;
+  font-weight: bold; 
+}
+
 .navLink {
   color: rgb(146, 50, 243);
   text-decoration: none;
@@ -179,6 +211,12 @@ main {
   padding-right: 15px;
 }
 
+.warning {
+  background-color: rgb(146, 50, 243);
+  color: black;
+  border: 1px solid rgb(146, 50, 243);
+}
+
 #landing{
   border-radius: 100px;
   display: flex;
@@ -197,14 +235,6 @@ main {
   font-size: 70px;
 }
 
-.column {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  flex: 1;
-}
-
 .hidden {
   display: none;
 }
@@ -220,4 +250,12 @@ main {
 
 #bigText {
   font-size: 120px;
+}
+
+.column {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
 }

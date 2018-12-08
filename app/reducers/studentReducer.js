@@ -66,7 +66,7 @@ const studentReducer = (state = initialState, action) => {
       return { ...state, selectedStudent: currentStudent }
     case UPDATE_STUDENT:
       const unchangedStudents = state.studentList.filter(student => student.id !== action.student.id)
-      return { ...state, selectedStudent: {}, studentList: [ ...unchangedStudents, action.student] }
+      return { ...state, selectedStudent: {}, studentList: [...unchangedStudents, action.student] }
     default:
       return state
   }

@@ -29,6 +29,7 @@ router.get('/:studentId', async (req, res, next) => {
       },
       include: [Campus]
     })
+    console.log(student)
     res.json(student)
   } catch (err) {
     next(err);
