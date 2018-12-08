@@ -17,7 +17,7 @@ class SingleStudentView extends Component {
   }
 
   redirectToEditPage() {
-    this.props.history.push(`/students/update/${this.props.student.id}`)
+    this.props.history.push(`/students/update/${this.props.student.id}/`)
   }
 
   async submitRemove() {
@@ -25,7 +25,7 @@ class SingleStudentView extends Component {
     this.setState({
       redirecting: true
     })
-    setTimeout(() => {this.props.history.push(`/students`)}, 1500)
+    setTimeout(() => {this.props.history.push(`/students/`)}, 1500)
   }
 
   async componentDidMount() {

@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
 
 const Campus = props => {
   const { campus, submitRemove } = props

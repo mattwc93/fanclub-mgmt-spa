@@ -132,6 +132,8 @@ main {
 }
 
 .campusContainer img {
+  border: 2px solid rgb(146, 50, 243);
+  border-radius: 10px;
   height: 500px;
   width: 500px;
 }
