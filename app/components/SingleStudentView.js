@@ -25,7 +25,7 @@ class SingleStudentView extends Component {
     this.setState({
       redirecting: true
     })
-    setTimeout(() => { this.props.history.push(`/students/`) }, 1500)
+    setTimeout(() => { this.props.history.push(`/students`) }, 1500)
   }
 
   async componentDidMount() {
@@ -46,25 +46,38 @@ class SingleStudentView extends Component {
       return <h1>LOADING STUDENT...</h1>
     } else if (this.state.redirecting) {
       return (
-        <div>
+        <div className='redirect column' >
           <h1>Student Removed.</h1>
-          <h2>Returning to Student List...</h2>
+          <h1>Returning to Student List...</h1>
         </div>
       )
     } else if (!student.id) {
-      return <div>No student with that ID found!</div>
+      return (
+        <div className='redirect column'>
+          <h1>No student with that ID found!</h1>
+        </div>
+      )
     } else {
       return (
-        <div className='container'>
-          <h1>Currently Viewed Student:</h1>
-          <Student student={student} submitRemove={this.submitRemove} />
-          <button type='submit' className='add_btn' onClick={this.redirectToEditPage}>EDIT</button>
-          <h2>Campus Attended:</h2>
-          {
-            student.campus
-              ? <CampusCard campus={student.campus} singleView={true} />
-              : <h4>This Student is not currently attending one of our campuses!</h4>
-          }
+        <div>
+          <div className='listHeader'>
+            <h1>{`${student.firstName} ${student.lastName}`}:</h1>
+            <div className='columnRight'>
+              <button type='submit' className='add_btn editRmv_btn' onClick={this.redirectToEditPage}>EDIT</button>
+              <button type='submit' className='add_btn editRmv_btn' onClick={this.submitRemove}>Remove</button>
+            </div>
+          </div>
+          <Student student={student} />
+          <div className='rowCentered' >
+            <h1>CAMPUS ATTENDED:</h1>
+          </div >
+          <div className='studentList row wrap'>
+            {
+              student.campus
+                ? <CampusCard campus={student.campus} singleView={true} />
+                : <h2>This Student is not currently attending one of our campuses!</h2>
+            }
+          </div>
         </div>
       )
     }

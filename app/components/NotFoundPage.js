@@ -11,9 +11,9 @@ class NotFoundPage extends Component {
 
   render() {
     return (
-      <div>
+      <div className='row'>
         <h1>Page not Found!</h1>
-        <h3>Redirecting back to home page in 5 seconds...</h3>
+        <h1>Redirecting back to home page in 5 seconds...</h1>
       </div>
     )
   }

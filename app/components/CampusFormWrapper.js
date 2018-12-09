@@ -10,6 +10,7 @@ const initialState = {
   address: '',
   description: '',
   imgUrl: '',
+  editFormName: '',
   validName: false,
   validAddress: false,
   validForm: false,
@@ -94,6 +95,7 @@ class CampusFormWrapper extends Component {
     if (this.props.match.params.campusId) {
       this.setState({
         ...this.props.campus,
+        editFormName: this.props.campus.name,
         validName: true,
         validAddress: true,
         validForm: true,

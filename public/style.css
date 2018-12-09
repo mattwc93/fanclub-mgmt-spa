@@ -6,6 +6,7 @@
 * {
   box-sizing: border-box;
   font-family: arial, sans-serif;
+  /* font-family: "Times New Roman", Times, serif; */
 }
 
 body {
@@ -39,15 +40,21 @@ label {
   font-size: 20px;
 }
 
+.formLabel {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
 textarea {
   background-color: rgb(146, 50, 243);
   color: black;
   border: black;
-  width: 500px;
-  height: 150px;
+  width: 450px;
+  height: 175px;
   font-size: 15px;
   font-weight: bold; 
-  margin: 5px;
+  margin: 10px;
+  padding: 5px;
 }
 
 input {
@@ -79,6 +86,20 @@ input {
   text-decoration: none;
 }
 
+.formContainer {
+  background-color: black;
+  padding-bottom: 20px;
+  border: 4px solid rgb(146, 50, 243);
+  width: 500px;
+  border-radius: 10px;
+  outline: 4px solid rgb(146, 50, 243);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 55px;
+}
+
 .cardLink {
   background-color: black;
   color: rgb(146, 50, 243);
@@ -89,6 +110,11 @@ input {
   padding: 5px;
   border-radius: 5px;
 }
+
+/* .purpleHeader {
+  background-color: black;
+  color: rgb(146, 50, 243
+} */
 
 .card_btn {
   background-color: black;
@@ -108,11 +134,27 @@ input {
   font-size: 20px;
 }
 
+.formDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: black;
+}
+
+.form_btn {
+  margin-top: 20px;
+}
+
 .add_btn:hover{
   background-color: rgb(146, 50, 243);
   border: 3px solid black;
   color: black;
   cursor: pointer;
+}
+
+input {
+  margin-bottom: 20px;
+  margin-top: 10px;
 }
 
 .studentContainer {
@@ -150,17 +192,36 @@ main {
   border: 1px solid purple;
 }
 
+.bigText {
+  font-size: 25px;
+}
+
 .campusContainer {
   border: 3px solid black;
   align-items: center;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin: 10px;
+  margin-bottom: 10px;
   padding: 40px;
   background-color: black;
   color: rgb(146, 50, 243);
   border-radius: 10px;
+  flex: 2;
+}
+
+h2 {
+  color: rgb(146, 50, 243);
+  background-color: black;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.blackBlock {
+  color: rgb(146, 50, 243);
+  background-color: black;
+  padding: 10px;
+  border-radius: 15px;
 }
 
 .campusContainer img {
@@ -209,6 +270,7 @@ main {
   align-items: center;
   padding-left: 15px;
   padding-right: 15px;
+  padding-top: 40px;
 }
 
 .warning {
@@ -233,6 +295,10 @@ main {
 
 .listHeader h1 {
   font-size: 70px;
+  background-color: black;
+  color: rgb(146, 50, 243);
+  border-radius: 10px;
+  padding: 10px;
 }
 
 .hidden {
@@ -252,10 +318,40 @@ main {
   font-size: 120px;
 }
 
+.columnRight {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-right: 15px;
+}
+
 .column {
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
   flex: 1;
+}
+
+.editRmv_btn {
+  margin: 10px;
+}
+
+.redirect {
+  font-size: 40px;
+  margin-top: 80px;
+  padding: 20px;
+  background-color: black;
+  color: rgb(146, 50, 243);
+  border: 2px solid rgb(146, 50, 243);
+}
+
+.singleStudent {
+  background-color: rgb(146, 50, 243);
+  color: black;
+  font-size: 28px;
+  border: 12px solid rgb(146, 50, 243);
+  margin-left: 60px;
+  border-radius: 15px;
+  /* outline: 8px solid rgb(146, 50, 243); */
 }

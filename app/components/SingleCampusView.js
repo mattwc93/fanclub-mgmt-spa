@@ -44,31 +44,38 @@ class SingleCampusView extends Component {
     const { campus } = this.props
     if (this.state.redirecting) {
       return (
-        <div>
+        <div className='redirect column'>
           <h1>Campus Removed.</h1>
-          <h2>Returning to Campus List...</h2>
+          <h1>Returning to Campus List...</h1>
         </div>
       )
     } else if (this.state.loading) {
-      return <h1>LOADING CAMPUS...</h1>
+      return <div className='redirect column'>
+      <h1>LOADING CAMPUS...</h1>
+      </div>
     } else if (!campus.id) {
-      return <div>No Campus with that ID found!</div>
+      return <div className='redirect column'>
+      <h1>No Campus with that ID found!</h1>
+      </div>
     } else {
       return (
         <div>
           <div className='listHeader'>
             <h1>{campus.name}:</h1>
-            <button type='submit' className='add_btn' onClick={this.redirectToEditPage}>EDIT</button>
+            <div className='columnRight'>
+              <button type='submit' className='add_btn editRmv_btn' onClick={this.redirectToEditPage}>EDIT</button>
+              <button type='submit' className='add_btn editRmv_btn' onClick={this.submitRemove}>Remove</button>
+            </div>
           </div>
           <Campus campus={campus} submitRemove={this.submitRemove} />
-          <div className='rowCentered'>
-            <h1>STUDENTS CURRENTLY ATTENDING {campus.name.toUpperCase()}:</h1>
+          <div className='rowCentered' >
+            <h1>STUDENTS ATTENDING {campus.name.toUpperCase()}:</h1>
           </div>
           <div className='studentList row wrap' >
             {
               campus.students && campus.students.length
                 ? campus.students.map(student => <StudentCard key={student.id} student={student} campusView={true} />)
-                : <p>No Students currently attending.</p>
+                : <h2>No Students currently attending.</h2>
             }
           </div>
         </div>

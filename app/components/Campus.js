@@ -1,16 +1,13 @@
 import React from 'react'
 
 const Campus = props => {
-  const { campus, submitRemove } = props
+  const { campus } = props
   return (
     <div className="campusContainer">
       <img src={campus.imgUrl} className="smallImg" />
       <div className='column singleView'>
-        <h4>Address: </h4><p>{campus.address}</p>
-        <h4>Description:</h4><p> {campus.description}</p>
-        {
-          !props.singleView && <button type='submit' className='add_btn' onClick={submitRemove}>Remove Campus</button>
-        }
+        <h2>Address: </h2><p>{campus.address}</p>
+        <h2>Description:</h2><p> {campus.description}</p>
       </div>
     </div>
   )

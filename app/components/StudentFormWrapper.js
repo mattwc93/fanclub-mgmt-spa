@@ -11,6 +11,7 @@ const initialState = {
   email: '',
   gpa: '',
   imgUrl: '',
+  editFormName: '',
   invalidSubmit: false,
   validEmail: false,
   validFirstName: false,
@@ -112,6 +113,7 @@ class StudentFormWrapper extends Component {
     if (this.props.match.params.studentId) {
       this.setState({
         ...this.props.student,
+        editFormName: this.props.student.firstName,
         validEmail: true,
         validFirstName: true,
         validLastName: true,
@@ -131,7 +133,7 @@ class StudentFormWrapper extends Component {
       emailClasses = classNames({
         'formError': !this.state.validEmail
       })
-      firstNameClasses = classNames({
+      firstNameClasses = classNames({        
         'formError': !this.state.validFirstName
       })
       lastNameClasses = classNames({

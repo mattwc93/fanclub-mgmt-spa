@@ -204,7 +204,7 @@ const streetNames = [
 ]
 
 const streetTypes = [
-  'Avebue',
+  'Avenue',
   'Street',
   'Blvd',
   'Way',
@@ -245,6 +245,12 @@ const descriptions = [
 `Suspendisse ullamcorper dui vel felis iaculis efficitur. Sed molestie libero est, quis faucibus risus faucibus sit amet. Proin pulvinar justo id risus elementum, ac convallis ex iaculis. Vestibulum fringilla laoreet erat nec tincidunt. In gravida vel nunc ac pharetra. Proin aliquam velit non viverra ultrices. Praesent a ligula quis ex viverra tristique nec non sem. Nullam quis mauris nec nulla tristique rutrum. Nunc sapien eros, scelerisque eu pharetra quis, accumsan id justo. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed tempus faucibus est, sed molestie velit ultricies vitae. Maecenas elementum tempor ligula, vel dignissim diam. Proin lobortis luctus tempor. Nam sed finibus augue. Curabitur aliquet sapien quis magna rutrum, vel lacinia justo iaculis.`
 ]
 
+const placeHolderImageUrls = [
+  'https://www.placecage.com/',
+  'https://www.stevensegallery.com/',
+  'https://www.fillmurray.com/'
+]
+
 const randomNum = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
@@ -264,9 +270,9 @@ const makeLastName = () => {
   return lastNames[randomNum(0, lastNames.length - 1)]
 }
 
-const makeSchoolName = () => {
-  return schoolNames[randomNum(0, schoolNames.length - 1)]
-}
+// const makeSchoolName = () => {
+//   return schoolNames[randomNum(0, schoolNames.length - 1)]
+// }
 
 const makeAddress = () => {
   const street = streetNames[randomNum(0, streetNames.length - 1)]
@@ -291,8 +297,10 @@ const getCampusId = () => {
 }
 
 const makeImgUrl = () => {
-  const num = randomNum(10, 24) * 25
-  return `https://www.placecage.com/${num}/${num}`
+  const num = randomNum(5, 40) * 20
+  const siteIdx = randomNum(0, 2);
+  const url =  `${placeHolderImageUrls[siteIdx]}${num}/${num}`
+  return url
 }
 
 const students = []
@@ -351,6 +359,7 @@ const main = () => {
     })
     .then(() => {
       db.close();
+      console.log(`Database seeded with ${NUMSTUDENTS} students and ${campuses.length} campuses. May Nic Cage look favorably upon thee.`)
       return null;
     });
 };
