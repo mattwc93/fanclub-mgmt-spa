@@ -28,13 +28,13 @@ class StudentList extends Component {
   render() {
     const students = this.props.students;
     if (this.state.loading) {
-      return <h1>LOADING STUDENTS...</h1>
+      return <h1>LOADING MEMBERS...</h1>
     } else {
       return (
         <div>
           <div className='listHeader'>
-            <h1>ALL STUDENTS:</h1>
-            <button type='submit' className='add_btn' onClick={this.handleClick} >ADD A STUDENT</button>
+            <h1>ALL MEMBERS:</h1>
+            <button type='submit' className='add_btn' onClick={this.handleClick} >ADD A MEMBER</button>
           </div>
           <div className='row wrap studentList'>
             {
@@ -44,7 +44,7 @@ class StudentList extends Component {
                     <StudentCard key={student.id} student={student} />
                   )
                 })
-                : <h1>NO STUDENTS IN DATABASE</h1>
+                : <h1>NO MEMBERS IN DATABASE</h1>
             }
           </div>
           <a href='#top'>TOP</a>

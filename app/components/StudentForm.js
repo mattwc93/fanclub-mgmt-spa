@@ -9,8 +9,8 @@ const StudentForm = props => {
       <form onSubmit={handleSubmit} autoComplete='off' className='formContainer'>
         {
           !updateForm
-          ? <h2 className='formLabel'>ADD NEW STUDENT:</h2>
-          : <h2 className='formLabel'>{`EDIT ${editFormName ? editFormName.toUpperCase() : `STUDENT`}'S INFO:`}</h2>
+          ? <h2 className='formLabel'>ADD NEW FAN:</h2>
+          : <h2 className='formLabel'>{`EDIT ${editFormName ? editFormName.toUpperCase() : `FAN`}'S INFO:`}</h2>
         }
         <label htmlFor='firstName' className='cardLink'>First Name:
         {
@@ -36,7 +36,7 @@ const StudentForm = props => {
           }
         </label>
         <input name='email' className={emailClasses} value={email} onChange={handleChange} />
-        <label htmlFor='gpa' className='cardLink'>GPA:
+        <label htmlFor='gpa' className='cardLink'>MEMBER RATING:
         {
             invalidSubmit
             && !validGpa

@@ -43,18 +43,18 @@ class SingleStudentView extends Component {
   render() {
     const { student } = this.props
     if (this.state.loading) {
-      return <h1>LOADING STUDENT...</h1>
+      return <h1>LOADING MEMBER...</h1>
     } else if (this.state.redirecting) {
       return (
         <div className='redirect column' >
-          <h1>Student Removed.</h1>
-          <h1>Returning to Student List...</h1>
+          <h1>Member Removed.</h1>
+          <h1>Returning to Member List...</h1>
         </div>
       )
     } else if (!student.id) {
       return (
         <div className='redirect column'>
-          <h1>No student with that ID found!</h1>
+          <h1>No member with that ID found!</h1>
         </div>
       )
     } else {
@@ -69,13 +69,13 @@ class SingleStudentView extends Component {
           </div>
           <Student student={student} />
           <div className='rowCentered' >
-            <h1>CAMPUS ATTENDED:</h1>
+            <h1>MEMBER OF:</h1>
           </div >
           <div className='studentList row wrap'>
             {
               student.campus
                 ? <CampusCard campus={student.campus} singleView={true} />
-                : <h2>This Student is not currently attending one of our campuses!</h2>
+                : <h2>This person is not currently in a fanclub!</h2>
             }
           </div>
         </div>

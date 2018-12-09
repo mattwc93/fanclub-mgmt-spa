@@ -9,8 +9,8 @@ const CampusForm = props => {
       <form onSubmit={handleSubmit} autoComplete='off' className='formContainer'>
         {
           !updateForm
-            ? <h2 className='formLabel'>ADD NEW CAMPUS:</h2>
-            : <h2 className='formLabel'>{`EDIT ${editFormName ? `${editFormName.toUpperCase()}'S` : `CAMPUS'`} INFO:`}</h2>
+            ? <h2 className='formLabel'>ADD NEW FANCLUB:</h2>
+            : <h2 className='formLabel'>{`EDIT ${editFormName ? `${editFormName.toUpperCase()}'S` : `FANCLUB'`} INFO:`}</h2>
         }
         <label htmlFor='name' className='cardLink'>Name:
         {

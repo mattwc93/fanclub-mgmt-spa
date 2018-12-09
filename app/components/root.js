@@ -19,8 +19,8 @@ class Root extends Component{
       <div>
         <nav>
           <Link to='/' className='navLink'>HOME</Link>
-          <Link to='/campuses' className='navLink'>CAMPUSES</Link>
-          <Link to='/students' className='navLink'>STUDENTS</Link>
+          <Link to='/campuses' className='navLink'>FANCLUBS</Link>
+          <Link to='/students' className='navLink'>MEMBERS</Link>
         </nav>
         <main>
           <Switch>

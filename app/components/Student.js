@@ -8,7 +8,7 @@ const Student = props => {
       <div className='column singleView bigText' >
         <h1 className='blackBlock'>{student.firstName} {student.lastName} </h1>
         <h2 className='blackBlock'>{student.email}</h2>
-        <h1 className='blackBlock'>GPA: {student.gpa}</h1>
+        <h1 className='blackBlock'>MEMBER RATING: {student.gpa}</h1>
       </div>
     </div >
   )

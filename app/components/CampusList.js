@@ -30,19 +30,19 @@ class CampusList extends Component {
   render() {
     const { campuses } = this.props
     if (this.state.loading) {
-      return <h1>LOADING CAMPUSES...</h1>
+      return <h1>LOADING FANCLUB...</h1>
     } else {
       return (
         <div>
           <div className="listHeader">
-            <h1>ALL CAMPUSES:</h1>
-            <button type='submit' onClick={this.handleClick} className='add_btn' >ADD A CAMPUS</button>
+            <h1>ALL FANCLUBS:</h1>
+            <button type='submit' onClick={this.handleClick} className='add_btn' >ADD A FANCLUB</button>
           </div>
           <div className='row wrap studentList' >
             {
               campuses.length
                 ? campuses.map(campus => <CampusCard key={campus.id} campus={campus} />)
-                : <h2>No Campuses Found</h2>
+                : <h2>No Fanclubs Found</h2>
             }
           </div>
           <a href='#top'>TOP</a>

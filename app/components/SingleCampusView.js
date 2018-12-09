@@ -45,17 +45,17 @@ class SingleCampusView extends Component {
     if (this.state.redirecting) {
       return (
         <div className='redirect column'>
-          <h1>Campus Removed.</h1>
-          <h1>Returning to Campus List...</h1>
+          <h1>Fanclub Removed.</h1>
+          <h1>Returning to Fanclub List...</h1>
         </div>
       )
     } else if (this.state.loading) {
       return <div className='redirect column'>
-      <h1>LOADING CAMPUS...</h1>
+      <h1>LOADING FANCLUBS...</h1>
       </div>
     } else if (!campus.id) {
       return <div className='redirect column'>
-      <h1>No Campus with that ID found!</h1>
+      <h1>No Fanclub with that ID found!</h1>
       </div>
     } else {
       return (
@@ -69,13 +69,13 @@ class SingleCampusView extends Component {
           </div>
           <Campus campus={campus} submitRemove={this.submitRemove} />
           <div className='rowCentered' >
-            <h1>STUDENTS ATTENDING {campus.name.toUpperCase()}:</h1>
+            <h1>MEMBERS IN {campus.name.toUpperCase()}:</h1>
           </div>
           <div className='studentList row wrap' >
             {
               campus.students && campus.students.length
                 ? campus.students.map(student => <StudentCard key={student.id} student={student} campusView={true} />)
-                : <h2>No Students currently attending.</h2>
+                : <h2>This club has no members!</h2>
             }
           </div>
         </div>

@@ -111,31 +111,26 @@ const lastNames = [
   'Smith'
 ]
 
-const schoolNames = [
-  'Hogwarts',
-  'MIT',
-  'UCSC',
-  'UCSD',
-  'Harvard',
-  'Fullstack',
-  'Cuesta',
-  'Cal Poly',
-  'Stanford',
-  'California State',
-  'Texas A&M',
-  'Cabrillo City College',
-  'Silly School',
-  'Hallam Univeristy of The Pump',
-  'Moon Base Univeristy',
-  'College of Mars',
-  'The Sprawl Arts Academy',
-  'Academy of the Dark Arts',
-  'School of Hard Knocks',
-  'Apocolypse Now Educational Facility',
-  'Univeristy of Tokyo',
-  'Neo-Tokyo Hacking Camp',
-  'Really, Why am I still wasting time on this',
-  'Seriously like 2 hours gone typing random names'
+const fanClubNames = [
+  'Asimov Fanclub',
+  'Cyberpunk Lovers',
+  'Breakfast Club',
+  '1337 |-| 4 ( |< 3 |2 $',
+  'NIC CAGE CLUB',
+  'Flying Seagalls',
+  'I Love Fanclubs Fanclub',
+  'Bill Murray is our real dad',
+  'Seagall Academy of Akido',
+  'I LOVE CHEESE CLUB',
+  'Never gonna give you up',
+  'Never gonna let you down',
+  'I\'m not a Gnelf',
+  'I\'m not a Gnoblin',
+  'I\'m a GuhNOME',
+  'Silly Sweater Sellers',
+  'Anime Fanclub',
+  '#1 Nic Cage Fans Only Club',
+  'NO GIRLS ALLOWED IN THIS CLUB',
 ]
 
 const cities = [
@@ -270,10 +265,6 @@ const makeLastName = () => {
   return lastNames[randomNum(0, lastNames.length - 1)]
 }
 
-// const makeSchoolName = () => {
-//   return schoolNames[randomNum(0, schoolNames.length - 1)]
-// }
-
 const makeAddress = () => {
   const street = streetNames[randomNum(0, streetNames.length - 1)]
   const type = streetTypes[randomNum(0, streetTypes.length - 1)]
@@ -291,7 +282,7 @@ const randomGpa = () => {
 }
 
 const getCampusId = () => {
-  let campusId = randomNum(0, schoolNames.length - 1)
+  let campusId = randomNum(0, fanClubNames.length - 1)
   if(!campusId) campusId = null
   return campusId
 }
@@ -323,7 +314,7 @@ for(let i = 1; i <= NUMSTUDENTS; i++) {
   students.push(newStudent)
 }
 
-const campuses = schoolNames.map(name => {
+const campuses = fanClubNames.map(name => {
   const address = makeAddress()
   const description = makeDescription()
   const imgUrl = makeImgUrl()
