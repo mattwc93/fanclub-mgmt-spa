@@ -132,6 +132,7 @@ input {
   height: 70px;
   width: 200px;
   font-size: 20px;
+
 }
 
 .formDiv {
@@ -215,6 +216,69 @@ h2 {
   background-color: black;
   padding: 5px;
   border-radius: 5px;
+}
+
+.anchorContainer {
+  background-color: rgb(146, 50, 243);
+  margin: 50px;
+  padding: 25px;
+  align-content: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.filterDiv {
+  background-color: rgb(146, 50, 243);
+  padding: 25px;
+  align-content: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.topAnchor {
+  padding: 10px;
+  padding-top: 15px;
+  text-align: center;
+  text-justify: center;
+  color: rgb(146, 50, 243);
+  background-color: black;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 10px;
+  width: 80px;
+  height: 50px;
+  border: 2px solid (69, 9, 129);
+}
+
+.topAnchor:hover {
+  color: black;
+  background-color: rgb(146, 50, 243);
+  border: 2px solid black;
+}
+
+.filterContainer {
+  border-radius: 10px;
+  width: 600px;
+  margin: 10px;
+  padding: 10px;
+  background-color: black;
+  color: rgb(146, 50, 243);
+}
+
+.filterLine {
+  border: 1px solid rgb(146, 50, 243);
+  padding-bot: 5px;
+  padding-top: 5px;
+}
+
+.numberInput {
+  width: 55px;
+  height: 25px;
+  font-weight: bold;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .blackBlock {
@@ -337,6 +401,23 @@ h2 {
   margin: 10px;
 }
 
+.filter_btn {
+  background-color: black;
+  border: 3px solid rgb(69, 9, 129);
+  color: rgb(146, 50, 243);
+  border-radius: 15px;
+  padding: 0px;
+  height: 35px;
+  width: 100px;
+  font-weight: bold;
+  font-size: 10px;
+}
+
+.filter_btn:hover {
+  background-color: rgb(146, 50, 243);
+  border: 3px solid black;
+  color: black;
+}
 .redirect {
   font-size: 40px;
   margin-top: 80px;
