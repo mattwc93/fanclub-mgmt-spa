@@ -54,6 +54,7 @@ class CampusList extends Component {
       loading: false,
       memberFilterMax: this.props.campuses.length
     })
+    window.scrollTo(0, 0)
   }
 
   handleClick() {

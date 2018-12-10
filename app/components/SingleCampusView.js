@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import Campus from './Campus'
 import StudentCard from './StudentCard'
 import { selectCampus, deleteCampus } from '../reducers/campusReducer'
+import { selectStudent } from '../reducers/studentReducer'
+import { withRouter, Link } from 'react-router-dom'
 
 class SingleCampusView extends Component {
 
@@ -11,11 +13,15 @@ class SingleCampusView extends Component {
     this.state = {
       loading: true,
       redirecting: false,
-      sortBy,
-      reverseSort,
     }
     this.redirectToEditPage = this.redirectToEditPage.bind(this)
     this.submitRemove = this.submitRemove.bind(this)
+    this.handleCardClick = this.handleCardClick.bind(this)
+  }
+
+  async handleCardClick (studentId) {
+    await this.props.selectStudent(Number(studentId))
+    window.scrollTo(0, 0)
   }
 
   redirectToEditPage() {
@@ -31,15 +37,21 @@ class SingleCampusView extends Component {
   }
 
   async componentDidMount() {
-    const campusId = Number(this.props.match.params.campusId)
-    if (isNaN(campusId)) {
-      this.props.history.push('/notFound')
-    } else {
-      await this.props.selectCampus(campusId)
-      this.setState({
-        loading: false
-      })
+    if (this.props.singleView) {
+      await this.props.selectCampus(this.props.singleCampus.id)
     }
+    else {
+      const campusId = Number(this.props.match.params.campusId)
+      if (isNaN(campusId)) {
+        this.props.history.push('/notFound')
+      } else {
+        await this.props.selectCampus(campusId)
+      }
+    }
+    this.setState({
+      loading: false
+    })
+    window.scrollTo(0, 0)
   }
 
   render() {
@@ -53,21 +65,24 @@ class SingleCampusView extends Component {
       )
     } else if (this.state.loading) {
       return <div className='redirect column'>
-      <h1>LOADING FANCLUBS...</h1>
+        <h1>LOADING FANCLUBS...</h1>
       </div>
     } else if (!campus.id) {
       return <div className='redirect column'>
-      <h1>No Fanclub with that ID found!</h1>
+        <h1>No Fanclub with that ID found!</h1>
       </div>
     } else {
       return (
         <div>
           <div className='listHeader'>
-            <h1>{campus.name}:</h1>
-            <div className='columnRight'>
-              <button type='submit' className='add_btn editRmv_btn' onClick={this.redirectToEditPage}>EDIT</button>
-              <button type='submit' className='add_btn editRmv_btn' onClick={this.submitRemove}>Remove</button>
-            </div>
+            <Link to={`/campuses/${campus.id}`} className='headerLink'><h1 className='nameLink'>{`${campus.name}:`}</h1></Link>
+            {
+              !this.props.singleView &&
+              <div className='columnRight'>
+                <button type='submit' className='add_btn editRmv_btn' onClick={this.redirectToEditPage}>EDIT</button>
+                <button type='submit' className='add_btn editRmv_btn' onClick={this.submitRemove}>Remove</button>
+              </div>
+            }
           </div>
           <Campus campus={campus} submitRemove={this.submitRemove} />
           <div className='rowCentered' >
@@ -76,7 +91,7 @@ class SingleCampusView extends Component {
           <div className='studentList row wrap' >
             {
               campus.students && campus.students.length
-                ? campus.students.map(student => <StudentCard key={student.id} student={student} campusView={true} />)
+                ? campus.students.map(student => <StudentCard key={student.id} student={student} campusView={true} cardClick={this.handleCardClick} />)
                 : <h2>This club has no members!</h2>
             }
           </div>
@@ -92,7 +107,8 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => ({
   selectCampus: (id) => dispatch(selectCampus(id)),
-  removeCampus: (id) => dispatch(deleteCampus(id))
+  removeCampus: (id) => dispatch(deleteCampus(id)),
+  selectStudent: (id) => dispatch(selectStudent(id))
 })
 
-export default connect(mapState, mapDispatch)(SingleCampusView)
+export default withRouter(connect(mapState, mapDispatch)(SingleCampusView))

@@ -77,6 +77,18 @@ input {
   border-radius: 10px;
 }
 
+.headerLink {
+  padding-top: 0;
+  text-decoration: none;
+  margin-top: 0;
+}
+
+.nameLink:hover {
+  color: black;
+  background-color: rgb(146, 50, 243);
+  border: 5px solid black;
+}
+
 .navLink:hover {
   color: black;
   background-color: rgb(146, 50, 243);
@@ -407,6 +419,7 @@ h2 {
   background-color: black;
   color: rgb(146, 50, 243);
   border-radius: 10px;
+  border: 5px solid black;
   padding: 10px;
   margin-bottom: 0;
 }
@@ -433,6 +446,7 @@ h2 {
   align-items: center;
   flex-direction: column;
   margin-right: 15px;
+  margin-top: 35px;
 }
 
 .column {

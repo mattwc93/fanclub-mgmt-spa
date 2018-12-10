@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import CampusCard from './CampusCard'
+import SingleCampusView from './SingleCampusView'
 import Student from './Student'
 import { selectStudent, deleteStudent } from '../reducers/studentReducer'
+import { withRouter } from 'react-router-dom'
 
 class SingleStudentView extends Component {
 
@@ -38,6 +40,7 @@ class SingleStudentView extends Component {
         loading: false
       })
     }
+    window.scrollTo(0, 0)
   }
 
   render() {
@@ -71,10 +74,10 @@ class SingleStudentView extends Component {
           <div className='rowCentered' >
             <h1>MEMBER OF:</h1>
           </div >
-          <div className='studentList row wrap'>
+          <div>
             {
               student.campus
-                ? <CampusCard campus={student.campus} singleView={true} />
+                ? <SingleCampusView singleCampus={student.campus} singleView={true} />
                 : <h2>This person is not currently in a fanclub!</h2>
             }
           </div>
@@ -93,4 +96,4 @@ const mapDispatch = dispatch => ({
   removeStudent: (id) => dispatch(deleteStudent(id))
 })
 
-export default connect(mapState, mapDispatch)(SingleStudentView)
+export default withRouter(connect(mapState, mapDispatch)(SingleStudentView))

@@ -1,7 +1,7 @@
 const { db, Student, Campus } = require('./server/db/models')
 const { green, red } = require('chalk')
 
-const NUMSTUDENTS = 50
+const NUMSTUDENTS = 100
 
 const emailPostfix = [
   'gmail.com',
