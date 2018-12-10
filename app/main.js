@@ -15,9 +15,9 @@ render(
 )
 
 
-/* TODOS: + filter/sort in main lists
-              - students: filter/sort by campus, name, gpa, rank*, followers*
-              - campus: filter/sort by name, number of members
+/* TODOS: + sort in main lists
+              - students: sort by campus, name, gpa, rank*, followers*
+              - campus: sort by name, number of members
           + add/remove students from campuses
               - remove button on member cards in single club view
               - select menu to see all campuses and add student to a campus in single student view

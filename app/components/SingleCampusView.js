@@ -10,7 +10,9 @@ class SingleCampusView extends Component {
     super()
     this.state = {
       loading: true,
-      redirecting: false
+      redirecting: false,
+      sortBy,
+      reverseSort,
     }
     this.redirectToEditPage = this.redirectToEditPage.bind(this)
     this.submitRemove = this.submitRemove.bind(this)

@@ -105,10 +105,11 @@ input {
   color: rgb(146, 50, 243);
   text-decoration: none;
   text-align: center;
-  font-size: 1em;
+  font-size: .9em;
   border: 1px solid rgb(69, 9, 129);
   padding: 5px;
   border-radius: 5px;
+  margin: 2px;
 }
 
 /* .purpleHeader {
@@ -168,8 +169,8 @@ main {
 }
 
 .cardImg {
-  height: 150px;
-  width: 150px;
+  height: 110px;
+  width: 110px;
   border-radius: 10px;
   border: 2px solid rgb(146, 50, 243);
 }
@@ -180,13 +181,19 @@ main {
   align-content: space-evenly;
   align-items: center;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-evenly;
   background-color: black;
-  height: 250px;
+  height: 150px;
   width: 275px;
   margin-bottom: 10px;
   padding: 5px;
+  padding-left: 10px;
+  flex: 1;
+}
+
+.cardColumn {
+  margin-left: 8px;
 }
 
 .campusCard {
@@ -230,11 +237,20 @@ h2 {
 
 .filterDiv {
   background-color: rgb(146, 50, 243);
-  padding: 25px;
+  padding: 10px;
   align-content: center;
   display: flex;
   flex-direction: row;
   justify-content: center;
+}
+
+.sortDiv {
+  background-color: rgb(146, 50, 243);
+  align-content: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 20px;
 }
 
 .topAnchor {
@@ -262,15 +278,44 @@ h2 {
   border-radius: 10px;
   width: 600px;
   margin: 10px;
+  margin-top: 0px;
   padding: 10px;
+  padding-top: 0px;
   background-color: black;
   color: rgb(146, 50, 243);
 }
 
+.centerText {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.centerText p {
+  padding: 2px;
+  font-weight: bold;
+  font-size: 20px;
+  border: 2px solid rgb(146, 50, 243);
+  width: 150px;
+  text-align: center;
+  border-radius: 5px;
+
+}
+
+.filterBtnContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
 .filterLine {
   border: 1px solid rgb(146, 50, 243);
-  padding-bot: 5px;
-  padding-top: 5px;
+  padding: 10px;
+}
+
+.marginTop {
+  margin-top: 15px;
 }
 
 .numberInput {
@@ -327,14 +372,14 @@ h2 {
 }
 
 .listHeader {
-  border-radius: 100px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding-left: 15px;
   padding-right: 15px;
-  padding-top: 40px;
+  padding-top: 25px;
+  padding-bottom: 25px;
 }
 
 .warning {
@@ -363,6 +408,7 @@ h2 {
   color: rgb(146, 50, 243);
   border-radius: 10px;
   padding: 10px;
+  margin-bottom: 0;
 }
 
 .hidden {
@@ -435,4 +481,21 @@ h2 {
   margin-left: 60px;
   border-radius: 15px;
   /* outline: 8px solid rgb(146, 50, 243); */
+}
+
+.sortSelector {
+  background-color: black;
+  border: 2px solid rgb(69, 9, 129);
+  color: rgb(146, 50, 243);
+  padding: 0px;
+  height: 35px;
+  width: 100px;
+  font-weight: bold;
+  font-size: 10px;
+}
+
+.sortSelector:hover {
+  background-color: rgb(146, 50, 243);
+  border: 2px solid black;
+  color: black;
 }
