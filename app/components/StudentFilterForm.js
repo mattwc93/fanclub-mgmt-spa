@@ -4,7 +4,7 @@ const StudentFilterForm = props => {
   const { firstNameFilter, lastNameFilter, ratingFilterMin, ratingFilterMax, filterByFirstName, filterByLastName, filterByRating, filterChange, toggleFilter, showFilters, clubNameFilter, filterByClubName } = props.filterProps
   if (!showFilters) {
     return (
-      <button type='button' className='filter_btn' name='showFilters' onClick={toggleFilter}>SHOW FILTERS</button>
+      <button type='button' className='filter_btn filter_menu' name='showFilters' onClick={toggleFilter}>SHOW FILTERS</button>
     )
   }
   else {
@@ -12,7 +12,6 @@ const StudentFilterForm = props => {
       <div className='filterContainer' id='studentFilterContainer'>
         <span><span className='centerText'><p>{`FILTER BY: `}</p></span>
           <div className='filterBtnContainer'>
-            <button type='button' name='showFilters' className='filter_btn' onClick={toggleFilter}>HIDE FILTERS</button>
             <button type='button' className='filter_btn' name='filterByFirstName' onClick={toggleFilter}>FIRST NAME</button>
             <button type='button' className='filter_btn' name='filterByLastName' onClick={toggleFilter}>LAST NAME</button>
             <button type='button' className='filter_btn' name='filterByRating' onClick={toggleFilter}>MEMBER RATING</button>

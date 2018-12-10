@@ -17,9 +17,11 @@ render(
 
 /* TODOS: 
           + add/remove students from campuses
-              - remove button on member cards in single club view
-              - select menu to see all campuses and add student to a campus in single student view
-              - select menu to see/add students without campuses to a campus in single campus view
+              - remove button on member cards in single club view(or remove member drop down)
+              - 'join club 'select menu to see all campuses and add student to a campus in single student view for students without campus
+                  > alternatively could be own view with list of all clubs and a button to join
+              - 'leave club' button in single student view for students in a campus
+              - 'invite member' select menu to see/add students without campuses to a campus in single campus view
           + add club(campus) ranks, select menu to assign them once a member is in a club, default to base rank when member joins for first time
               - order members list in a club by their member rating/ranks(ranks first, then sort within ranks by rating)
               - create new members without rating, only assign when they are in a club from the members page

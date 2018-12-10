@@ -188,7 +188,7 @@ main {
 }
 
 .cardContainer {
-  border: 3px solid black;
+  border: 5px solid black;
   border-radius: 15px;
   align-content: space-evenly;
   align-items: center;
@@ -202,6 +202,10 @@ main {
   padding: 5px;
   padding-left: 10px;
   flex: 1;
+}
+
+.cardContainer:hover {
+  background-color: rgb(69, 9, 129);
 }
 
 .cardColumn {
@@ -277,7 +281,7 @@ h2 {
   border-radius: 10px;
   width: 80px;
   height: 50px;
-  border: 2px solid (69, 9, 129);
+  border: 2px solid rgb(69, 9, 129);
 }
 
 .topAnchor:hover {
@@ -465,12 +469,17 @@ h2 {
   background-color: black;
   border: 3px solid rgb(69, 9, 129);
   color: rgb(146, 50, 243);
-  border-radius: 15px;
+  /* border-radius: 15px; */
   padding: 0px;
   height: 35px;
   width: 100px;
   font-weight: bold;
-  font-size: 10px;
+  font-size: 11px;
+}
+
+.filter_menu {
+  margin-right: 10px;
+  margin-left: 10px;
 }
 
 .filter_btn:hover {
@@ -505,7 +514,7 @@ h2 {
   height: 35px;
   width: 100px;
   font-weight: bold;
-  font-size: 10px;
+  font-size: 11px;
 }
 
 .sortSelector:hover {

@@ -59,7 +59,7 @@ class SingleCampusView extends Component {
     if (this.state.redirecting) {
       return (
         <div className='redirect column'>
-          <h1>Fanclub Removed.</h1>
+          <h1>Fanclub Disbanded.</h1>
           <h1>Returning to Fanclub List...</h1>
         </div>
       )
@@ -80,7 +80,7 @@ class SingleCampusView extends Component {
               !this.props.singleView &&
               <div className='columnRight'>
                 <button type='submit' className='add_btn editRmv_btn' onClick={this.redirectToEditPage}>EDIT</button>
-                <button type='submit' className='add_btn editRmv_btn' onClick={this.submitRemove}>Remove</button>
+                <button type='submit' className='add_btn editRmv_btn' onClick={this.submitRemove}>DISBAND CLUB</button>
               </div>
             }
           </div>

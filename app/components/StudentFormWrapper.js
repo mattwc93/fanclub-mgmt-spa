@@ -85,7 +85,7 @@ class StudentFormWrapper extends Component {
         validLastName = value.length > 0
         break;
       case 'gpa':
-        validGpa = value >= 0.0 && value <= 4.0
+        validGpa = value >= 0.0 && value <= 10.0
         break;
       default:
         break;

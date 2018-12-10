@@ -50,8 +50,8 @@ class SingleStudentView extends Component {
     } else if (this.state.redirecting) {
       return (
         <div className='redirect column' >
-          <h1>Member Removed.</h1>
-          <h1>Returning to Member List...</h1>
+          <h1>Profile deleted.</h1>
+          <h1>Returning to Members List...</h1>
         </div>
       )
     } else if (!student.id) {
@@ -67,7 +67,7 @@ class SingleStudentView extends Component {
             <h1>{`${student.firstName} ${student.lastName}`}:</h1>
             <div className='columnRight'>
               <button type='submit' className='add_btn editRmv_btn' onClick={this.redirectToEditPage}>EDIT</button>
-              <button type='submit' className='add_btn editRmv_btn' onClick={this.submitRemove}>Remove</button>
+              <button type='submit' className='add_btn editRmv_btn' onClick={this.submitRemove}>DELETE PROFILE</button>
             </div>
           </div>
           <Student student={student} />

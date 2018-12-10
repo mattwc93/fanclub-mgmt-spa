@@ -15,8 +15,8 @@ const StudentSortSelecor = props => {
         </select>
         {
           reverseSort
-            ? <button type='button' className='filter_btn' name='reverseSort' onClick={toggleFilter}>DESCENDING</button>
-            : <button type='button' className='filter_btn' name='reverseSort' onClick={toggleFilter}>ASCENDING</button>
+            ? <button type='button' className='filter_btn filter_menu' name='reverseSort' onClick={toggleFilter}>DESCENDING</button>
+            : <button type='button' className='filter_btn filter_menu' name='reverseSort' onClick={toggleFilter}>ASCENDING</button>
         }
       </span>
     </div>

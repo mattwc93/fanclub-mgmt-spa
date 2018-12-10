@@ -8,6 +8,7 @@ import CampusSortSelector from './CampusSortSelector'
 
 
 
+
 class CampusList extends Component {
 
   constructor() {
@@ -16,11 +17,14 @@ class CampusList extends Component {
       loading: true,
       filterByName: false,
       filterByMembers: false,
+      filterByAvgRating: false,
       nameFilter: '',
       sortBy: '',
       reverseSort: false,
       memberFilterMin: 0,
-      memberFilterMax: 0,
+      memberFilterMax: 100,
+      avgRatingFilterMin: 0,
+      avgRatingFilterMax: 10,
       showFilters: false,
     }
     this.handleClick = this.handleClick.bind(this)
@@ -52,7 +56,6 @@ class CampusList extends Component {
     await this.props.fetchCampuses()
     this.setState({
       loading: false,
-      memberFilterMax: this.props.campuses.length
     })
     window.scrollTo(0, 0)
   }
@@ -64,14 +67,25 @@ class CampusList extends Component {
   render() {
     const filterProps = { ...this.state, filterChange: this.filterChange, toggleFilter: this.toggleFilter, sortChange: this.sortChange }
     let campuses = [...this.props.campuses]
-    const { filterByMembers, filterByName, nameFilter, memberFilterMax, memberFilterMin, showFilters, loading, sortBy, reverseSort } = this.state
-
+    const { filterByMembers, filterByName, nameFilter, memberFilterMax, memberFilterMin, showFilters, loading, sortBy, reverseSort, filterByAvgRating,avgRatingFilterMax, avgRatingFilterMin } = this.state
+    campuses.forEach(campus => {
+      if (campus.students.length) {
+        let totalRating = campus.students.map(student => student.gpa).reduce((total, currVal) => total + currVal)
+        let avgRating = (totalRating / campus.students.length).toFixed(2);
+        campus.avgRating = avgRating;
+      } else {
+        campus.avgRating = 0;
+      }
+    })
     //filters
     if (showFilters && filterByName) {
       campuses = campuses.filter(campus => campus.name.toLowerCase().includes(nameFilter.toLowerCase()))
     }
     if (showFilters && filterByMembers) {
       campuses = campuses.filter(campus => (campus.students.length >= memberFilterMin && campus.students.length <= memberFilterMax))
+    }
+    if(showFilters && filterByAvgRating) {
+      campuses = campuses.filter(campus => (campus.avgRating >= avgRatingFilterMin && campus.avgRating <= avgRatingFilterMax))
     }
 
     //sort
@@ -119,6 +133,7 @@ class CampusList extends Component {
                     <CampusFilterForm filterProps={filterProps} />
                   </div>
                   <div className='sortDiv'>
+                    <button type='button' className='filter_btn filter_menu' name='showFilters' onClick={this.toggleFilter}>HIDE FILTERS</button>
                     <CampusSortSelector sortProps={filterProps} />
                   </div>
                 </React.Fragment>
@@ -147,12 +162,11 @@ class CampusList extends Component {
 }
 
 const mapState = state => ({
-  campuses: state.campuses.campusList,
+  campuses: state.campuses.campusList
 })
 
 const mapDispatch = dispatch => ({
   fetchCampuses: () => dispatch(fetchCampuses()),
-
 })
 
 export default withRouter(connect(mapState, mapDispatch)(CampusList))

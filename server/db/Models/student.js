@@ -33,7 +33,7 @@ const Student = db.define('student', {
     allowNull: false,
     validate: {
       validGpa() {
-        if ((this.gpa < 0) || (this.gpa > 4)) {
+        if ((this.gpa < 0) || (this.gpa > 10)) {
           throw new Error('GPA must be between 0 and 4.0');
         }
       }

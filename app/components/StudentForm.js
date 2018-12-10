@@ -40,7 +40,7 @@ const StudentForm = props => {
         {
             invalidSubmit
             && !validGpa
-            && <span className="warning"> must be between 0.0 and 4.0</span>
+            && <span className="warning"> must be between 0 and 10</span>
           }
         </label>
         <input name='gpa' type='float' className={gpaClasses} value={gpa} onChange={handleChange} />

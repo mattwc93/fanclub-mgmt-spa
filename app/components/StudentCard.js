@@ -5,7 +5,7 @@ const StudentCard = props => {
   const { student, campusView, cardClick } = props
   return (
     <Link to={`/students/${student.id}`} className='fullCardLink' >
-      <div className="cardContainer" onClick={() => cardClick(student.id)}>
+      <div className="cardContainer" onClick={() => {cardClick(student.id)}}>
         <img src={student.imgUrl} className="cardImg" />
         <div className='column cardColumn' >
           <span className='cardLink' >{student.firstName} {student.lastName}</span>

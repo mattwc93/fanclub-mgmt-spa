@@ -132,6 +132,7 @@ class StudentList extends Component {
                     <StudentFilterForm filterProps={filterProps} />
                   </div>
                   <div className='sortDiv'>
+                  <button type='button' className='filter_btn filter_menu' name='showFilters' onClick={this.toggleFilter}>HIDE FILTERS</button>
                     <StudentSortSelector sortProps={filterProps} />
                   </div>
                 </React.Fragment>

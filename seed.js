@@ -278,7 +278,7 @@ const makeDescription = () => {
 }
 
 const randomGpa = () => {
-  return (Math.random() * 4).toFixed(2);
+  return (Math.random() * 10).toFixed(2);
 }
 
 const getCampusId = () => {

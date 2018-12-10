@@ -9,10 +9,9 @@ const CampusCard = props => {
         <img src={campus.imgUrl} className="cardImg" />
         <div className='column cardColumn' >
           <span className='cardLink'>{campus.name}</span>
-          {
-            campus.students &&
-            <span className='cardLink'>{`Members: ${campus.students.length}`}</span>
-          }
+          <span className='cardLink'>{`Members: ${campus.students.length}`}</span>
+          <span className='cardLink'>{`Avg Rating: ${campus.avgRating}`}</span>
+
         </div>
       </div>
     </Link>

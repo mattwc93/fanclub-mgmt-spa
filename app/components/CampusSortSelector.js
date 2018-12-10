@@ -10,11 +10,12 @@ const CampusSortSelecor = props => {
           <option value=''>SORT BY:</option>
           <option value='name'>NAME</option>
           <option value='numMembers'># of MEMBERS</option>
+          <option value='avgRating'>AVG RATING</option>
         </select>
         {
           reverseSort
-            ? <button type='button' className='filter_btn' name='reverseSort' onClick={toggleFilter}>DESCENDING</button>
-            : <button type='button' className='filter_btn' name='reverseSort' onClick={toggleFilter}>ASCENDING</button>
+            ? <button type='button' className='filter_btn filter_menu' name='reverseSort' onClick={toggleFilter}>DESCENDING</button>
+            : <button type='button' className='filter_btn filter_menu' name='reverseSort' onClick={toggleFilter}>ASCENDING</button>
         }
       </span>
     </div>
