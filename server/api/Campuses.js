@@ -6,10 +6,10 @@ const { Campus, Student } = require('../db/Models')
 router.get('/', async (req, res, next) => {
   try {
     const campuses = await Campus.findAll({
-      include: [{
-        model: Student,
-        as: 'students'
-      }]
+      include: [
+        { model: Student, as: 'students' },
+        { model: Student, as: 'Founder' }
+      ]
     })
     res.json(campuses)
   } catch (err) {
@@ -23,7 +23,10 @@ router.get('/:campusId', async (req, res, next) => {
       where: {
         id: req.params.campusId
       },
-      include: [Student],
+      include: [
+        { model: Student },
+        { model: Student, as: 'Founder' },
+      ]
     })
     res.json(campus)
   } catch (err) {
@@ -43,7 +46,7 @@ router.post('/', async (req, res, next) => {
 
 router.delete('/:campusId', async (req, res, next) => {
   try {
-    Campus.destroy({where: {id: req.params.campusId}})
+    Campus.destroy({ where: { id: req.params.campusId } })
     res.sendStatus(204)
   } catch (err) {
     next(err)
@@ -55,7 +58,7 @@ router.put('/:campusId', async (req, res, next) => {
     const campusToUpdate = await Campus.findById(req.params.campusId)
     const updatedCampus = await campusToUpdate.update(req.body)
     res.json(updatedCampus)
-  } catch(error) {
+  } catch (error) {
     next(error)
   }
 })

@@ -74,7 +74,7 @@ input {
   font-size: 2em;
   border: 2px solid rgb(146, 50, 243);
   padding: 3px;
-  border-radius: 10px;
+  /* border-radius: 10px; */
 }
 
 .headerLink {
@@ -103,7 +103,7 @@ input {
   padding-bottom: 20px;
   border: 4px solid rgb(146, 50, 243);
   width: 500px;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   outline: 4px solid rgb(146, 50, 243);
   display: flex;
   align-items: center;
@@ -120,8 +120,32 @@ input {
   font-size: .9em;
   border: 1px solid rgb(69, 9, 129);
   padding: 5px;
-  border-radius: 5px;
+  /* border-radius: 5px; */
   margin: 2px;
+}
+
+.founderLink {
+  text-decoration: none;
+  text-align: center;
+  font-size: 1.4em;
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.founderLink h4 {
+  color: black;
+  margin-top: 20px;
+  border: 3px solid black;
+  padding: 8px;
+  /* border-radius: 5px; */
+
+}
+.founderLink h4:hover {
+  color: rgb(146, 50, 243);
+  background-color: black;
+  margin-top: 20px;
+  border: 3px solid rgb(69, 9, 129);
+  /* border-radius: 5px; */
 }
 
 /* .purpleHeader {
@@ -134,14 +158,14 @@ input {
   border: 1px solid rgb(69, 9, 129);
   color: rgb(146, 50, 243);
   padding: 2px;
-  border-radius: 5px;
+  /* border-radius: 5px; */
 }
 
 .add_btn {
   background-color: black;
   border: 3px solid rgb(69, 9, 129);
   color: rgb(146, 50, 243);
-  border-radius: 15px;
+  /* border-radius: 15px; */
   height: 70px;
   width: 200px;
   font-size: 20px;
@@ -183,13 +207,13 @@ main {
 .cardImg {
   height: 110px;
   width: 110px;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   border: 2px solid rgb(146, 50, 243);
 }
 
 .cardContainer {
   border: 5px solid black;
-  border-radius: 15px;
+  /* border-radius: 15px; */
   align-content: space-evenly;
   align-items: center;
   display: flex;
@@ -227,18 +251,20 @@ main {
   flex-direction: row;
   justify-content: center;
   margin-bottom: 10px;
-  padding: 40px;
+  padding: 30px;
   background-color: black;
   color: rgb(146, 50, 243);
-  border-radius: 10px;
+  /* border-radius: 10px; */
   flex: 2;
 }
 
-h2 {
+.campusH3 {
   color: rgb(146, 50, 243);
   background-color: black;
   padding: 5px;
-  border-radius: 5px;
+  /* border-radius: 5px; */
+  margin: 5px;
+  border: 1px solid black;
 }
 
 .anchorContainer {
@@ -278,7 +304,7 @@ h2 {
   background-color: black;
   text-decoration: none;
   font-weight: bold;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   width: 80px;
   height: 50px;
   border: 2px solid rgb(69, 9, 129);
@@ -291,7 +317,7 @@ h2 {
 }
 
 .filterContainer {
-  border-radius: 10px;
+  /* border-radius: 10px; */
   width: 600px;
   margin: 10px;
   margin-top: 0px;
@@ -314,7 +340,7 @@ h2 {
   border: 2px solid rgb(146, 50, 243);
   width: 150px;
   text-align: center;
-  border-radius: 5px;
+  /* border-radius: 5px; */
 
 }
 
@@ -346,25 +372,28 @@ h2 {
   color: rgb(146, 50, 243);
   background-color: black;
   padding: 10px;
-  border-radius: 15px;
+  /* border-radius: 15px; */
 }
 
 .campusContainer img {
   border: 2px solid rgb(146, 50, 243);
-  border-radius: 10px;
+  /* border-radius: 10px; */
   height: 500px;
   width: 500px;
 }
 
 .singleView {
-  margin-left: 50px;
-  padding: 10px;
+  margin-left: 40px;
+  padding-top: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  text-align: center;
   border: 2px solid black;
-  height: 400px;
+  height: 500px;
   background-color: rgb(146, 50, 243);
   color: black;
-  border-radius: 10px;
-  outline: 6px solid rgb(146, 50, 243);
+  /* border-radius: 10px; */
+  outline: 5px solid rgb(146, 50, 243);
 }
 
 .wrap {
@@ -384,7 +413,7 @@ h2 {
   margin: 10px;
   background-color: black;
   color: rgb(146, 50, 243);
-  border-radius: 10px;
+  /* border-radius: 10px; */
 }
 
 .listHeader {
@@ -405,7 +434,7 @@ h2 {
 }
 
 #landing{
-  border-radius: 100px;
+  /* border-radius: 100px; */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -422,7 +451,7 @@ h2 {
   font-size: 70px;
   background-color: black;
   color: rgb(146, 50, 243);
-  border-radius: 10px;
+  /* border-radius: 10px; */
   border: 5px solid black;
   padding: 10px;
   margin-bottom: 0;
@@ -458,6 +487,14 @@ h2 {
   align-items: center;
   flex-direction: column;
   justify-content: center;
+  flex: 1;
+}
+
+.campusColumn {
+  display: flex;
+  /* align-items: center; */
+  flex-direction: column;
+  justify-content: space-between;
   flex: 1;
 }
 
@@ -502,8 +539,8 @@ h2 {
   font-size: 28px;
   border: 12px solid rgb(146, 50, 243);
   margin-left: 60px;
-  border-radius: 15px;
-  /* outline: 8px solid rgb(146, 50, 243); */
+  /* border-radius: 15px; */
+  outline: 8px solid rgb(146, 50, 243);
 }
 
 .sortSelector {

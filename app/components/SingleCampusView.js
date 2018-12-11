@@ -84,14 +84,14 @@ class SingleCampusView extends Component {
               </div>
             }
           </div>
-          <Campus campus={campus} submitRemove={this.submitRemove} />
+          <Campus campus={campus} submitRemove={this.submitRemove} cardClick={this.handleCardClick}/>
           <div className='rowCentered' >
             <h1>{campus.students.length} MEMBERS IN {campus.name.toUpperCase()}:</h1>
           </div>
           <div className='studentList row wrap' >
             {
               campus.students && campus.students.length
-                ? campus.students.map(student => <StudentCard key={student.id} student={student} campusView={true} cardClick={this.handleCardClick} />)
+                ? campus.students.map(student => <StudentCard key={student.id} campus={campus} student={student} campusView={true} cardClick={this.handleCardClick} />)
                 : <h2>This club has no members!</h2>
             }
           </div>

@@ -1,7 +1,7 @@
 const { db, Student, Campus } = require('./server/db/models')
 const { green, red } = require('chalk')
 
-const NUMSTUDENTS = 25
+const NUMSTUDENTS = 100
 
 const emailPostfix = [
   'gmail.com',
@@ -325,6 +325,15 @@ const campuses = fanClubNames.map(name => {
     imgUrl,
   }
   return newCampus
+})
+
+campuses.forEach((campus, idx) => {
+  let memberEmails = students.filter(student => student.campusId === (idx + 1)).map(member => member.email)
+  let max = memberEmails.length - 1
+  let founderEmail = memberEmails[randomNum(0, max)];
+  let founderId = students.findIndex(student => student.email === founderEmail) + 1
+  if(founderId === 0) founderId = null
+  campus.FounderId = founderId
 })
 
 const seed = () =>

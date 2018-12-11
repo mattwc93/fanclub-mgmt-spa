@@ -45,6 +45,10 @@ class SingleStudentView extends Component {
 
   render() {
     const { student } = this.props
+    let rank = 'MEMBER';
+    if(student.campus && (student.campus.FounderId === student.id)) {
+      rank = 'FOUNDER'
+    }
     if (this.state.loading) {
       return <h1>LOADING MEMBER...</h1>
     } else if (this.state.redirecting) {
@@ -72,7 +76,7 @@ class SingleStudentView extends Component {
           </div>
           <Student student={student} />
           <div className='rowCentered' >
-            <h1>MEMBER OF:</h1>
+            <h1>{`${rank} OF:`}</h1>
           </div >
           <div>
             {

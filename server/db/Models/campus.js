@@ -23,7 +23,7 @@ const Campus = db.define('campus', {
   description: {
     type: Sequelize.TEXT,
     defaultValue: 'No Description Provided.'
-  }
+  },
 })
 
 Campus.beforeValidate(campus => {
