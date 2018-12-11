@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import StudentCard from './StudentCard'
-import { fetchStudents } from '../reducers/studentReducer'
+import { fetchStudents, selectStudent } from '../reducers/studentReducer'
 import StudentFilterForm from './StudentFilterForm'
 import StudentSortSelector from './StudentSortSelector'
 
@@ -29,6 +29,12 @@ class StudentList extends Component {
     this.filterChange = this.filterChange.bind(this)
     this.sortChange = this.sortChange.bind(this)
     this.toggleFilter = this.toggleFilter.bind(this)
+    this.handleCardClick = this.handleCardClick.bind(this)
+  }
+
+  async handleCardClick (studentId) {
+    await this.props.selectStudent(Number(studentId))
+    window.scrollTo(0, 0)
   }
 
   filterChange(event) {
@@ -149,7 +155,7 @@ class StudentList extends Component {
               students.length
                 ? students.map(student => {
                   return (
-                    <StudentCard key={student.id} student={student} />
+                    <StudentCard key={student.id} student={student} cardClick={this.handleCardClick}/>
                   )
                 })
                 : <h1>NO MEMBERS IN DATABASE</h1>
@@ -169,7 +175,8 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  fetchStudents: () => dispatch(fetchStudents())
+  fetchStudents: () => dispatch(fetchStudents()),
+  selectStudent: (id) => dispatch(selectStudent(id))
 })
 
 

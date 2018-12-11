@@ -23,7 +23,7 @@ router.get('/:campusId', async (req, res, next) => {
       where: {
         id: req.params.campusId
       },
-      include: [Student]
+      include: [Student],
     })
     res.json(campus)
   } catch (err) {

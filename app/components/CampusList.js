@@ -71,7 +71,7 @@ class CampusList extends Component {
     campuses.forEach(campus => {
       if (campus.students.length) {
         let totalRating = campus.students.map(student => student.gpa).reduce((total, currVal) => total + currVal)
-        let avgRating = (totalRating / campus.students.length).toFixed(2);
+        let avgRating = Number((totalRating / campus.students.length).toFixed(2));
         campus.avgRating = avgRating;
       } else {
         campus.avgRating = 0;
@@ -99,7 +99,7 @@ class CampusList extends Component {
           elemA = a[sortBy]
           elemB = b[sortBy]
         }
-        if (typeof elemA === 'string') {
+        if (typeof elemA === 'string') {          
           elemA = elemA.toUpperCase()
           elemB = elemB.toUpperCase()
         }

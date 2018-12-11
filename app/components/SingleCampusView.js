@@ -86,7 +86,7 @@ class SingleCampusView extends Component {
           </div>
           <Campus campus={campus} submitRemove={this.submitRemove} />
           <div className='rowCentered' >
-            <h1>MEMBERS IN {campus.name.toUpperCase()}:</h1>
+            <h1>{campus.students.length} MEMBERS IN {campus.name.toUpperCase()}:</h1>
           </div>
           <div className='studentList row wrap' >
             {
